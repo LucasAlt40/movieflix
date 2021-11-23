@@ -2,7 +2,7 @@
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 
-import styles from "./styles.modules.scss";
+import "./styles.scss";
 
 import { Link } from "react-router-dom";
 import { FilmContext } from "../../providers/film";
@@ -31,9 +31,9 @@ export default function FilmDetails() {
   return (
     <div >
       <Link to="/">Voltar para home</Link>
-      <h1 style={{color: 'white'}}>Olá mundo</h1>
-      <h2 style={{color: 'white'}}>Esse é o filme: {filme.title}</h2>
-      <h3 style={{color: 'white'}}>Nota: {filme.vote_average}</h3>
+      <h1 className="textos">Olá mundo</h1>
+      <h2 className="textos">Esse é o filme: {filme.title}</h2>
+      <h3 className="textos">Nota: {filme.vote_average}</h3>
       <img
         src={`https://image.tmdb.org/t/p/w200/${filme.poster_path}`}
         alt="teste"
