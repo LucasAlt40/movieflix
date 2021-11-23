@@ -1,10 +1,13 @@
 /* eslint-disable */
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
+
+import styles from "./styles.modules.scss";
+
 import { Link } from "react-router-dom";
 import { FilmContext } from "../../providers/film";
 
-export default function FilmDetails({title}) {
+export default function FilmDetails() {
   const { film } = useContext(FilmContext);
   const [filme, setFilme] = useState({});
 
@@ -26,11 +29,11 @@ export default function FilmDetails({title}) {
   }, [film]);
 
   return (
-    <div>
+    <div >
       <Link to="/">Voltar para home</Link>
-      <h1>Olá mundo</h1>
-      <h2>Esse é o filme: {filme.title}</h2>
-      <h3>Nota: {filme.vote_average}</h3>
+      <h1 style={{color: 'white'}}>Olá mundo</h1>
+      <h2 style={{color: 'white'}}>Esse é o filme: {filme.title}</h2>
+      <h3 style={{color: 'white'}}>Nota: {filme.vote_average}</h3>
       <img
         src={`https://image.tmdb.org/t/p/w200/${filme.poster_path}`}
         alt="teste"
@@ -38,11 +41,6 @@ export default function FilmDetails({title}) {
     </div>
   );
 }
-
-
-
-
-
 
 /* 
 
