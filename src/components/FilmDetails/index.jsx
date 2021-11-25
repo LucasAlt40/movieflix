@@ -19,7 +19,6 @@ export default function FilmDetails() {
         `https://api.themoviedb.org/3/movie/${film}?api_key=${api_key}&language=pt-BR`
       )
       .then((response) => {
-        console.log(response.data);
         setFilme(response.data);
       });
   }
@@ -29,8 +28,7 @@ export default function FilmDetails() {
   }, [film]);
 
   return (
-    <div >
-      <Link to="/">Voltar para home</Link>
+    <div>
       <h1 className="textos">Olá mundo</h1>
       <h2 className="textos">Esse é o filme: {filme.title}</h2>
       <h3 className="textos">Nota: {filme.vote_average}</h3>
@@ -38,6 +36,9 @@ export default function FilmDetails() {
         src={`https://image.tmdb.org/t/p/w200/${filme.poster_path}`}
         alt="teste"
       />
+      <p className="textos">{filme.overview}</p>
+
+      <Link to="/">Voltar para home</Link>
     </div>
   );
 }
