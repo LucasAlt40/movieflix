@@ -9,6 +9,8 @@ import Header from "../Header";
 
 function Home() {
   const [filme, setFilme] = useState([]);
+  const [nomeFilme, setNomeFilme] = useState("");
+  const [nomeFilme2, setNomeFilme2] = useState([]);
   const [loading, setLoading] = useState(true);
   const [nextPage, setNextPage] = useState(1);
 
@@ -33,14 +35,26 @@ function Home() {
   const fetchApi = () => {
     axios
       .get(
-        `https://api.themoviedb.org/3/list/${nextPage.toString()}?api_key=${api_key}&language=pt-BR`
+        `https://api.themoviedb.org/3/trending/movie/week?api_key=${api_key}&language=pt-BR&page=${nextPage.toString()}`
       )
       .then((response) => {
         setLoading(false);
-        setFilme(response.data.items);
+        setFilme(response.data.results);
+        console.log(response.data);
       })
       .catch((err) => {
         console.log(err);
+      });
+  };
+
+  const fetchApiSearch = () => {
+    axios
+      .get(
+        `https://api.themoviedb.org/3/search/movie?api_key=${api_key}&language=pt-BR&query=${nomeFilme}`
+      )
+      .then((response) => {
+        setNomeFilme2(response.data.results);
+        console.log(response.data);
       });
   };
 
@@ -48,16 +62,32 @@ function Home() {
     fetchApi();
   }, [nextPage]);
 
+  useEffect(() => {
+    fetchApiSearch();
+  }, [nomeFilme]);
+
   if (loading) {
     return <h1>Loading...</h1>;
   }
 
   return (
     <>
-      <Header/>
+      <Header />
       <button onClick={handleBackPage}>Voltar página</button>
       <button onClick={handleUpdatePage}>Próxima página</button>
+      <h1 className="erro">{nextPage}</h1>
+      <input type="text" onChange={(e) => setNomeFilme(e.target.value)}/>
       <hr />
+
+      <div>
+        {nomeFilme2.map((film) => (
+          <div className="textos" key={film.id}>
+            <Link to="/teste" onClick={() => {
+              handleSetFilm(film.id)
+            }}>{film.title}</Link>
+          </div>
+        ))}
+      </div>
 
       <div className="film-container">
         {filme.map((film) => (
