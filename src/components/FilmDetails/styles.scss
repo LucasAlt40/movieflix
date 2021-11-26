@@ -1,3 +1,26 @@
+.site-layout-content {
+  min-height: 280px;
+  padding: 24px;
+  background: #fff;
+}
+.logo {
+  float: left;
+  height: 31px;
+}
+.ant-row-rtl .logo {
+  float: right;
+  margin: 16px 0 16px 24px;
+}
+  [data-theme="dark"] .site-layout-content {
+    background: #141414;
+  }
+
+.container1 { 
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
 .textos {
-  color: white;
+  width: 650px;
 }

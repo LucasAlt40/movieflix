@@ -1,7 +1,6 @@
 /* eslint-disable */
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import "./App.scss";
 import FilmDetails from "./components/FilmDetails";
 import Home from "./components/Home";
 import { FilmeProvider } from "./providers/film";
