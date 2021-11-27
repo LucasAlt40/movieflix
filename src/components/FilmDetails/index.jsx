@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 import { FilmContext } from "../../providers/film";
 
 export default function FilmDetails() {
-  const { film } = useContext(FilmContext);
+  const { film, typeShowContext } = useContext(FilmContext);
   const [filme, setFilme] = useState({});
   const [loading, setLoading] = useState(true);
   const [cast, setCast] = useState([]);
@@ -22,7 +22,7 @@ export default function FilmDetails() {
   async function fetchApi() {
     await axios
       .get(
-        `https://api.themoviedb.org/3/movie/${film}?api_key=${api_key}&language=pt-BR`
+        `https://api.themoviedb.org/3/${typeShowContext}/${film}?api_key=${api_key}&language=pt-BR`
       )
       .then(async (response) => {
         setFilme(response.data);
@@ -33,7 +33,7 @@ export default function FilmDetails() {
   async function fetchApiCredits() {
     await axios
       .get(
-        `https://api.themoviedb.org/3/movie/${film}/credits?api_key=${api_key}&language=pt-BR`
+        `https://api.themoviedb.org/3/${typeShowContext}/${film}/credits?api_key=${api_key}&language=pt-BR`
       )
       .then((response) => {
         setCast(response.data.cast);
@@ -53,21 +53,15 @@ export default function FilmDetails() {
     <>
       <Layout className="layout">
         <Header>
-            <Link className="logo" to="/">
-              <Button type="primary">Voltar para a Home</Button>
-            </Link>
-          <Menu theme="dark" mode="horizontal" defaultSelectedKeys={["2"]}>
-            {new Array(15).fill(null).map((_, index) => {
-              const key = index + 1;
-              return <Menu.Item key={key}>{`nav ${key}`}</Menu.Item>;
-            })}
-          </Menu>
+          <Link className="logo" to="/">
+            <Button type="primary">Voltar para a Home</Button>
+          </Link>
         </Header>
         <Content style={{ padding: "0 50px" }}>
           <Breadcrumb style={{ margin: "16px 0" }}>
             <Breadcrumb.Item>Home</Breadcrumb.Item>
             <Breadcrumb.Item>List</Breadcrumb.Item>
-            <Breadcrumb.Item>App</Breadcrumb.Item>
+            <Breadcrumb.Item>{filme.title === undefined ? filme.name : filme.title}</Breadcrumb.Item>
           </Breadcrumb>
           <div className="site-layout-content">
             <div className="film-details-container">
@@ -78,7 +72,9 @@ export default function FilmDetails() {
                 />
                 <div className="textos">
                   <div>
-                    <h2>{filme.title}</h2>
+                    <h2>
+                      {filme.title === undefined ? filme.name : filme.title}
+                    </h2>
                     <Tooltip title={`Total de votos: ${filme.vote_count}`}>
                       <span style={{ cursor: "pointer" }}>
                         <strong>Nota: {filme.vote_average}</strong>

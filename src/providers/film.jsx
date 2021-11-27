@@ -4,6 +4,7 @@ export const FilmContext = React.createContext({});
 
 export const FilmeProvider = ({ children }) => {
   const [film, setFilm] = useState("");
+  const [typeShowContext, setTypeShowContext] = useState("")
 
   useEffect(()=> {
     const filmStorage = localStorage.getItem("film");
@@ -12,10 +13,17 @@ export const FilmeProvider = ({ children }) => {
     } else {
       setFilm("")
     }
-  }, [])
+
+    const typeShowStorage = localStorage.getItem("typeShowContext");
+    if(typeShowStorage) {
+      setTypeShowContext(JSON.parse(typeShowStorage));
+    } else (
+      setTypeShowContext("")
+    )
+  }, [film, typeShowContext])
 
   return (
-    <FilmContext.Provider value={{ film, setFilm }}>
+    <FilmContext.Provider value={{ film, setFilm, typeShowContext, setTypeShowContext }}>
       {children}
     </FilmContext.Provider>
   );

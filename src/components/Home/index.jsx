@@ -9,38 +9,27 @@ import { FilmContext } from "../../providers/film";
 
 import "antd/dist/antd.css";
 import { Layout, Menu, Pagination, AutoComplete } from "antd";
-import {
-  AppstoreOutlined,
-  BarChartOutlined,
-  CloudOutlined,
-  ShopOutlined,
-  TeamOutlined,
-  UserOutlined,
-  UploadOutlined,
-  VideoCameraOutlined,
-} from "@ant-design/icons";
+import { UserOutlined, FilterOutlined } from "@ant-design/icons";
 
-const { Header, Content, Footer, Sider } = Layout;
+const { Content, Footer, Sider } = Layout;
 const { Option } = AutoComplete;
 
 function Home() {
   const [filme, setFilme] = useState([]);
-  const [nomeFilme, setNomeFilme] = useState("");
   const [pesquisaFilme, setPesquisaFilme] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [genres, setGenres] = useState([]);
+  const [nomeFilme, setNomeFilme] = useState("");
+  const [typeShow, setTypeShow] = useState("tv");
   const [nextPage, setNextPage] = useState(1);
-  const [result, setResult] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const { setFilm, setTypeShowContext } = useContext(FilmContext);
 
-  const { setFilm } = useContext(FilmContext);
   const api_key = process.env.REACT_APP_API_KEY;
   const baseUrl = `https://api.themoviedb.org/3/`;
 
-  const handleSearch = (value) => {
-    let res = [value];
-
+  function handleSearch(value) {
     setNomeFilme(value);
-    setResult(res);
-  };
+  }
 
   function handleSetFilm(id) {
     const filmId = id;
@@ -48,10 +37,16 @@ function Home() {
     setFilm(filmId);
   }
 
-  const fetchApi = () => {
-    axios
+  function handleSetTypeShow(typeShow) {
+    const type = typeShow;
+    localStorage.setItem("typeShowContext", JSON.stringify(type));
+    setTypeShowContext(type);
+  }
+
+  const fetchApi = async () => {
+    await axios
       .get(
-        `${baseUrl}trending/movie/week?api_key=${api_key}&language=pt-BR&page=${nextPage.toString()}`
+        `${baseUrl}trending/${typeShow}/week?api_key=${api_key}&language=pt-BR&page=${nextPage.toString()}&page_size=10`
       )
       .then((response) => {
         setLoading(false);
@@ -62,26 +57,38 @@ function Home() {
       });
   };
 
-  const fetchApiSearch = () => {
-    axios
-      .get(
-        `${baseUrl}search/movie?api_key=${api_key}&language=pt-BR&query=${nomeFilme}`
-      )
+  const fetchApiGenres = async () => {
+    await axios
+      .get(`${baseUrl}genre/movie/list?api_key=${api_key}&language=pt-BR`)
       .then((response) => {
-        setPesquisaFilme(response.data.results);
+        setLoading(false);
+        setGenres(response.data.genres);
       })
       .catch((err) => {
         console.log(err);
       });
   };
 
-  useEffect(() => {
-    fetchApi();
-  }, [nextPage]);
+  const fetchApiSearch = async () => {
+    await axios
+      .get(
+        `${baseUrl}search/${typeShow}?api_key=${api_key}&language=pt-BR&query=${nomeFilme}`
+      )
+      .then((response) => {
+        setPesquisaFilme(response.data.results);
+      })
+      .catch((err) => {});
+  };
+
+  useEffect(fetchApi, [nextPage, typeShow]);
+
+  useEffect(fetchApiGenres, []);
+
+  useEffect(fetchApiSearch, [handleSearch, typeShow]);
 
   useEffect(() => {
-    fetchApiSearch();
-  }, [handleSearch]);
+    handleSetTypeShow(typeShow);
+  }, [typeShow]);
 
   if (loading) {
     return <h1>Loading...</h1>;
@@ -98,30 +105,37 @@ function Home() {
             left: 0,
           }}
         >
-          <h2 className="input">Filtros</h2>
+          <h2 className="input">
+            Filtros <FilterOutlined />
+          </h2>
           <Menu theme="dark" mode="inline" defaultSelectedKeys={["4"]}>
-            <Menu.Item key="1" icon={<UserOutlined />}>
-              Ação
+            <Menu.Item
+              onClick={() => {
+                setTypeShow("tv");
+              }}
+              key="1"
+              icon={<UserOutlined />}
+            >
+              Séries
             </Menu.Item>
-            <Menu.Item key="2" icon={<VideoCameraOutlined />}>
-              Aventura
+            <Menu.Item
+              onClick={() => {
+                setTypeShow("movie");
+              }}
+              key="2"
+              icon={<UserOutlined />}
+            >
+              Filmes
             </Menu.Item>
-            <Menu.Item key="3" icon={<UploadOutlined />}>
-              Drama
-            </Menu.Item>
-            <Menu.Item key="4" icon={<BarChartOutlined />}>
-              Ficção
-            </Menu.Item>
-            <Menu.Item key="5" icon={<CloudOutlined />}>
-              Fantasia
-            </Menu.Item>
-            <Menu.Item key="6" icon={<AppstoreOutlined />}>
-              Romance
-            </Menu.Item>
+
+            {/* {genres.map((genre) => (
+              <Menu.Item key={genre.id} icon={<UserOutlined />}>
+                {genre.name}
+              </Menu.Item>
+            ))} */}
           </Menu>
         </Sider>
         <Layout className="site-layout" style={{ marginLeft: 200 }}>
-          <Header className="site-layout-background" style={{ padding: 0 }} />
           <Content style={{ margin: "24px 16px 0", overflow: "initial" }}>
             <div
               className="site-layout-background"
@@ -143,7 +157,7 @@ function Home() {
                       }}
                       to="/teste"
                     >
-                      {filme.title}
+                      {filme.title === undefined ? filme.name : filme.title}
                     </Link>
                   </Option>
                 ))}
@@ -152,6 +166,7 @@ function Home() {
                 defaultCurrent={1}
                 current={nextPage}
                 defaultPageSize={20}
+                pageSizeOptions={[20]}
                 onChange={(page) => {
                   setNextPage(page);
                 }}
@@ -173,12 +188,24 @@ function Home() {
                     />
 
                     <div className="title-film">
-                      <h2>{film.title}</h2>
+                      <h2>
+                        {film.title === undefined ? film.name : film.title}
+                      </h2>
                       <h3>Nota:{film.vote_average}</h3>
                     </div>
                   </Link>
                 ))}
               </div>
+              <Pagination
+                defaultCurrent={1}
+                current={nextPage}
+                defaultPageSize={20}
+                onChange={(page) => {
+                  setNextPage(page);
+                }}
+                total={1000}
+                pageSizeOptions={[20]}
+              />
             </div>
           </Content>
           <Footer style={{ textAlign: "center" }}>
