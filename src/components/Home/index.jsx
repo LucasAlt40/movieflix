@@ -9,7 +9,9 @@ import { FilmContext } from "../../providers/film";
 
 import "antd/dist/antd.css";
 import { Layout, Menu, Pagination, AutoComplete } from "antd";
-import { UserOutlined, FilterOutlined } from "@ant-design/icons";
+import { FilterOutlined } from "@ant-design/icons";
+
+import { Theaters, Tv } from "@material-ui/icons";
 
 const { Content, Footer, Sider } = Layout;
 const { Option } = AutoComplete;
@@ -57,18 +59,6 @@ function Home() {
       });
   };
 
-  const fetchApiGenres = async () => {
-    await axios
-      .get(`${baseUrl}genre/movie/list?api_key=${api_key}&language=pt-BR`)
-      .then((response) => {
-        setLoading(false);
-        setGenres(response.data.genres);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
   const fetchApiSearch = async () => {
     await axios
       .get(
@@ -81,11 +71,7 @@ function Home() {
   };
 
   useEffect(fetchApi, [nextPage, typeShow]);
-
-  useEffect(fetchApiGenres, []);
-
   useEffect(fetchApiSearch, [handleSearch, typeShow]);
-
   useEffect(() => {
     handleSetTypeShow(typeShow);
   }, [typeShow]);
@@ -114,7 +100,7 @@ function Home() {
                 setTypeShow("tv");
               }}
               key="1"
-              icon={<UserOutlined />}
+              icon={<Tv />}
             >
               Séries
             </Menu.Item>
@@ -123,7 +109,7 @@ function Home() {
                 setTypeShow("movie");
               }}
               key="2"
-              icon={<UserOutlined />}
+              icon={<Theaters />}
             >
               Filmes
             </Menu.Item>

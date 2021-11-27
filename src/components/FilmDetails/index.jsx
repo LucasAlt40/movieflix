@@ -2,9 +2,8 @@
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import "antd/dist/antd.css";
-import { Layout, Menu, Breadcrumb, Button, Row, Col, Tooltip } from "antd";
+import { Layout, Carousel, Breadcrumb, Button, Tooltip } from "antd";
 const { Header, Content, Footer } = Layout;
-const style = { padding: "8px 0" };
 
 import "./styles.scss";
 
@@ -61,7 +60,9 @@ export default function FilmDetails() {
           <Breadcrumb style={{ margin: "16px 0" }}>
             <Breadcrumb.Item>Home</Breadcrumb.Item>
             <Breadcrumb.Item>List</Breadcrumb.Item>
-            <Breadcrumb.Item>{filme.title === undefined ? filme.name : filme.title}</Breadcrumb.Item>
+            <Breadcrumb.Item>
+              {filme.title === undefined ? filme.name : filme.title}
+            </Breadcrumb.Item>
           </Breadcrumb>
           <div className="site-layout-content">
             <div className="film-details-container">
@@ -85,27 +86,27 @@ export default function FilmDetails() {
                   </div>
                 </div>
               </div>
-              <div className="teste">
+              <div className="cast">
                 <h2>Elenco:</h2>
-                <ul>
-                  <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
-                    {cast.map((casting) => (
-                      <Col key={casting.id} className="gutter-row" span={6}>
-                        <div style={style}>
-                          <li>
-                            <h3>
-                              {casting.name} - {casting.character}
-                            </h3>
-                            <img
-                              src={`https://image.tmdb.org/t/p/w200${casting.profile_path}`}
-                              alt="elenco"
-                            />
-                          </li>
+                <Carousel autoplay>
+                  {cast.map((casting) => (
+                    <div key={casting.id}>
+                      {casting.profile_path == null || undefined ? (
+                        false
+                      ) : (
+                        <div>
+                          <h3>
+                            {casting.name} - {casting.character}
+                          </h3>
+                          <img
+                            src={`https://image.tmdb.org/t/p/w200${casting.profile_path}`}
+                            alt="elenco"
+                          />
                         </div>
-                      </Col>
-                    ))}
-                  </Row>
-                </ul>
+                      )}
+                    </div>
+                  ))}
+                </Carousel>
               </div>
             </div>
           </div>
