@@ -3,6 +3,8 @@ import React, { useEffect, useState, useContext } from "react";
 
 import { FilmContext } from "../../../providers/film";
 
+import "./style.scss";
+
 import "antd/dist/antd.css";
 import { Layout, Menu } from "antd";
 const { Sider } = Layout;
@@ -24,16 +26,9 @@ export default function SiderDefault() {
   }, [typeShow]);
 
   return (
-    <Sider
-      style={{
-        overflow: "auto",
-        height: "100vh",
-        position: "fixed",
-        left: 0,
-      }}
-    >
+    <Sider className="sider">
       <Menu theme="dark" mode="inline" defaultSelectedKeys={["4"]}>
-        <h2 className="input">
+        <h2 className="sider-title">
           Filtros <FilterOutlined />
         </h2>
 
