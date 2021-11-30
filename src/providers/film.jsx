@@ -4,7 +4,7 @@ export const FilmContext = React.createContext({});
 
 export const FilmeProvider = ({ children }) => {
   const [film, setFilm] = useState("");
-  const [typeShowContext, setTypeShowContext] = useState("")
+  const [typeShowContext, setTypeShowContext] = useState("tv")
 
   useEffect(()=> {
     const filmStorage = localStorage.getItem("film");

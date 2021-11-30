@@ -1,0 +1,47 @@
+.film-container {
+  margin: auto;
+  display: flex;
+  width: 928px;
+  flex-wrap: wrap;
+
+  .film-card {
+    width: 200px;
+    height: 400px;
+    margin: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+
+    .title-film {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: yellow;
+
+      h2 {
+        font-size: 18px;
+      }
+    }
+
+    .title-film {
+      display: none;
+    }
+
+    &:hover {
+      .title-film {
+        display: flex;
+      }
+    }
+  }
+}
+
+.resultado-filmes {
+  display: flex;
+  flex-direction: column;
+}
