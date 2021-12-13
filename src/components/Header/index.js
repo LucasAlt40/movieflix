@@ -14,7 +14,6 @@ export default function Header() {
     <header
       bg="bg-green-700"
       style={{
-        width: "100vw",
         height: "80px",
         display: "flex",
         alignItems: "center",

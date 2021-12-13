@@ -1,5 +1,7 @@
 /* eslint-disable */
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
+
+import { Link as LinkTo } from "react-router-dom";
 
 import {
   Button,
@@ -18,6 +20,8 @@ import {
 import { ExternalLinkIcon, SearchIcon } from "@chakra-ui/icons";
 
 import fetchData from "../../functions/fetchData";
+import { useDispatch } from "react-redux";
+import setStatesFilm from "../../store/modules/film/actions";
 
 export default function Search() {
   const [valueSearch, setValueSearch] = useState("");
@@ -44,6 +48,11 @@ export default function Search() {
       fetchSearch();
     }
   }, [valueSearch]);
+
+  const dispatch = useDispatch();
+  const handleSetStateFilm = useCallback((film) => {
+    dispatch(setStatesFilm(film));
+  }, [dispatch]);
 
   return (
     <>
@@ -77,13 +86,15 @@ export default function Search() {
                         p={4}
                         color="white"
                       >
-                        <Link
+                        <LinkTo
                           color="#00ADB5"
-                          href="https://chakra-ui.com"
-                          isExternal
+                          to={`/Details/${res.title}`}
+                          onClick={() => {
+                            handleSetStateFilm(res);
+                          }}
                         >
                           {res?.title} <ExternalLinkIcon mx="2px" />
-                        </Link>
+                        </LinkTo>
                         <Divider colorScheme="black" />
                       </Box>
                     );
