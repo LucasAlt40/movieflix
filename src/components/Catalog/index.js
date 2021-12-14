@@ -1,5 +1,8 @@
 /* eslint-disable */
 import React, { useEffect, useState } from "react";
+
+import { Link as LinkTo } from "react-router-dom";
+
 import fetchData from "../../functions/fetchData";
 import ReactPaginate from "react-paginate";
 
@@ -39,8 +42,12 @@ export default function Catalog() {
     return <h1>Loading...</h1>;
   }
 
-  const handlePage = ({ selected }) => {
+  const handleNextPage = ({ selected }) => {
     setPage(selected + 1);
+  };
+
+  const handleSetLocalStorage = (film) => {
+    localStorage.setItem("film", JSON.stringify(film));
   };
 
   return (
@@ -59,7 +66,7 @@ export default function Catalog() {
             </Button>
           }
           pageCount={totalPages}
-          onPageChange={handlePage}
+          onPageChange={handleNextPage}
           containerClassName={"paginationButtons"}
           previousLinkClassName={"previousButton"}
           nextClassName={"nextButton"}
@@ -77,9 +84,13 @@ export default function Catalog() {
         justifyContent={"center"}
       >
         {filme.map((film) => (
-          <div
+          <LinkTo
             style={{ width: "300px", margin: "1rem", height: "450px" }}
             key={film.id}
+            to={`/Details/${film.title}`}
+            onClick={() => {
+              handleSetLocalStorage(film);
+            }}
           >
             <CircularProgress
               value={film.vote_average}
@@ -106,7 +117,7 @@ export default function Catalog() {
             ) : (
               <h1>Não foi possivel encontrar o poster do filme</h1>
             )}
-          </div>
+          </LinkTo>
         ))}
       </Flex>
     </>

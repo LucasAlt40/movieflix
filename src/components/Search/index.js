@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 
 import { Link as LinkTo } from "react-router-dom";
 
@@ -8,7 +8,6 @@ import {
   Input,
   Box,
   Divider,
-  Link,
   DrawerOverlay,
   DrawerContent,
   DrawerCloseButton,
@@ -20,8 +19,6 @@ import {
 import { ExternalLinkIcon, SearchIcon } from "@chakra-ui/icons";
 
 import fetchData from "../../functions/fetchData";
-import { useDispatch } from "react-redux";
-import setStatesFilm from "../../store/modules/film/actions";
 
 export default function Search() {
   const [valueSearch, setValueSearch] = useState("");
@@ -49,10 +46,9 @@ export default function Search() {
     }
   }, [valueSearch]);
 
-  const dispatch = useDispatch();
-  const handleSetStateFilm = useCallback((film) => {
-    dispatch(setStatesFilm(film));
-  }, [dispatch]);
+  const handleSetLocalStorage = (film) => {
+    localStorage.setItem("film", JSON.stringify(film));
+  };
 
   return (
     <>
@@ -90,7 +86,7 @@ export default function Search() {
                           color="#00ADB5"
                           to={`/Details/${res.title}`}
                           onClick={() => {
-                            handleSetStateFilm(res);
+                            handleSetLocalStorage(res);
                           }}
                         >
                           {res?.title} <ExternalLinkIcon mx="2px" />
