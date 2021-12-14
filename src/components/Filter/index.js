@@ -15,7 +15,7 @@ import fetchData from "../../functions/fetchData";
 export default function Filter() {
   const [genres, setGenres] = useState([]);
 
-  const apiKey = "0b001cf6e81fdfed426c49bcb1a2de2e";
+  const apiKey = process.env.REACT_APP_API_KEY;
 
   async function fetchApi() {
     const response = await fetchData(

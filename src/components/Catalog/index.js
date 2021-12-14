@@ -19,7 +19,7 @@ export default function Catalog() {
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
 
-  const apiKey = "0b001cf6e81fdfed426c49bcb1a2de2e";
+  const apiKey = process.env.REACT_APP_API_KEY;
   const baseUrlImg = "https://image.tmdb.org/t/p/w300";
 
   async function fetchApi() {

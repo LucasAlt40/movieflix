@@ -34,7 +34,7 @@ export default function Search() {
     setValueSearch(e.target.value);
   };
 
-  const apiKey = "0b001cf6e81fdfed426c49bcb1a2de2e";
+  const apiKey = process.env.REACT_APP_API_KEY;
 
   async function fetchSearch() {
     const response = await fetchData(
