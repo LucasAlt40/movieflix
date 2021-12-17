@@ -46,10 +46,6 @@ export default function Search() {
     }
   }, [valueSearch]);
 
-  const handleSetLocalStorage = (film) => {
-    localStorage.setItem("film", JSON.stringify(film));
-  };
-
   return (
     <>
       <Button ref={btnRef} colorScheme="teal" onClick={onOpen}>
@@ -84,10 +80,7 @@ export default function Search() {
                       >
                         <LinkTo
                           color="#00ADB5"
-                          to={`/Details/${res.title}`}
-                          onClick={() => {
-                            handleSetLocalStorage(res);
-                          }}
+                          to={`/Details/${res.title}/${res.id}`}
                         >
                           {res?.title} <ExternalLinkIcon mx="2px" />
                         </LinkTo>
