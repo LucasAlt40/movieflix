@@ -1,29 +1,29 @@
 /* eslint-disable */
 import { Box, Button, Center, Container, Divider } from "@chakra-ui/react";
-import { Link as LinkTo } from "react-router-dom";
-import React, { useCallback, useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import setStatesFilm from "../store/modules/film/actions";
+import { Link as LinkTo, useParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
 import { ArrowBackIcon } from "@chakra-ui/icons";
+import fetchData from "../functions/fetchData";
 
 export default function Details() {
-  const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
-  const store = useSelector((state) => state.film);
+  const [film, setFilm] = useState({});
 
-  const filme = JSON.parse(localStorage.getItem("film"));
+  const { id } = useParams();
 
-  const handleSetFilm = useCallback(
-    (film) => {
-      dispatch(setStatesFilm(film));
-      setLoading(false);
-    },
-    [dispatch]
-  );
+  const apiKey = process.env.REACT_APP_API_KEY;
+
+  async function fetchApi() {
+    const data = await fetchData(
+      `/movie/${id}?api_key=${apiKey}&language=pt-BR`
+    );
+    setFilm(data);
+    setLoading(false);
+  }
 
   useEffect(() => {
-    handleSetFilm(filme);
+    fetchApi();
   }, [loading]);
 
   if (loading) {
@@ -36,9 +36,9 @@ export default function Details() {
 
       <Center>
         <div>
-          <h1>{store?.title ? store.title : "Filme não encontrado"}</h1>
+          <h1>{film?.title ? film.title : "Filme não encontrado"}</h1>
           <img
-            src={`https://image.tmdb.org/t/p/w300/${store.poster_path}`}
+            src={`https://image.tmdb.org/t/p/w300/${film.poster_path}`}
             alt="poster filme"
             style={{ objectFit: "cover", height: "450px" }}
           />
@@ -50,12 +50,10 @@ export default function Details() {
           <Box bg={"#1C4532"} w={"100%"} p={5} color={"white"}>
             <div>
               <p>
-                {store?.overview ? store.overview : "Descrição não encontrada"}
+                {film?.overview ? film.overview : "Descrição não encontrada"}
               </p>
               <h2 style={{ color: "red" }}>
-                {store?.vote_average
-                  ? store.vote_average
-                  : "Nota não encontrada"}
+                {film?.vote_average ? film.vote_average : "Nota não encontrada"}
               </h2>
             </div>
             <Divider m={2} />

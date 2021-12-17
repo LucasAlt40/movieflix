@@ -46,10 +46,6 @@ export default function Catalog() {
     setPage(selected + 1);
   };
 
-  const handleSetLocalStorage = (film) => {
-    localStorage.setItem("film", JSON.stringify(film));
-  };
-
   return (
     <>
       <div className="pagination">
@@ -87,10 +83,7 @@ export default function Catalog() {
           <LinkTo
             style={{ width: "300px", margin: "1rem", height: "450px" }}
             key={film.id}
-            to={`/Details/${film.title}`}
-            onClick={() => {
-              handleSetLocalStorage(film);
-            }}
+            to={`/Details/${film.title}/${film.id}`}
           >
             <CircularProgress
               value={film.vote_average}
