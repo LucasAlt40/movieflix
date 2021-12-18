@@ -12,16 +12,15 @@ export default function Header() {
 
   return (
     <header
-      bg="bg-green-700"
       style={{
         height: "80px",
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
-        background: "#1C4532",
+        background: "#0D7377",
       }}
     >
-      <Heading color="#E53E3E" style={{margin: "auto 2rem"}}>MOVIEFLIX</Heading>
+      <Heading color="#FFF" style={{margin: "auto 2rem"}}>MOVIEFLIX</Heading>
 
       <div className="buttons" style={buttonsStyle}>
         <div style={{ margin: "auto 1rem" }}>

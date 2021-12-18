@@ -1,3 +1,8 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
 .pagination {
   width: 100px;
   margin: 4rem auto;
@@ -16,9 +21,9 @@
   margin: 8px;
   border-radius: 5px;
   cursor: pointer;
+  color: white;
 }
 
 .paginationActive a {
-  color: white;
-  background-color: #1c4532;
+  background-color: #00A3C4;
 }
