@@ -18,7 +18,7 @@ import {
 } from "@chakra-ui/react";
 import { ExternalLinkIcon, SearchIcon } from "@chakra-ui/icons";
 
-import fetchData from "../../functions/fetchData";
+import getData from "../../functions/getData";
 
 export default function Search() {
   const [valueSearch, setValueSearch] = useState("");
@@ -34,7 +34,7 @@ export default function Search() {
   const apiKey = process.env.REACT_APP_API_KEY;
 
   async function fetchSearch() {
-    const response = await fetchData(
+    const response = await getData(
       `/search/movie?api_key=${apiKey}&language=pt-BR&query=${valueSearch}`
     );
     setResult(response.results);

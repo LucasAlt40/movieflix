@@ -4,25 +4,17 @@ import Search from "../Search";
 import Filter from "../Filter";
 import { Heading } from "@chakra-ui/react";
 
+import "./style.css";
+
 export default function Header() {
-  const buttonsStyle = {
-    margin: "1rem",
-    display: "flex",
-  };
 
   return (
     <header
-      style={{
-        height: "80px",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-        background: "#0D7377",
-      }}
+      className="header"
     >
       <Heading color="#FFF" style={{margin: "auto 2rem"}}>MOVIEFLIX</Heading>
 
-      <div className="buttons" style={buttonsStyle}>
+      <div className="buttons" style={{margin: "1rem", display: "flex"}}>
         <div style={{ margin: "auto 1rem" }}>
           <Filter />
         </div>{" "}

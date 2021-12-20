@@ -14,7 +14,8 @@ import {
 
 export default function Filter() {
 
-    const {filtro} = useParams();
+    const { filtro } = useParams();
+    
     return (
         <>
             <Menu closeOnSelect={false}>
@@ -28,7 +29,7 @@ export default function Filter() {
                         type="radio"
                     >
                         <LinkTo to={`/upcoming`}>
-                            <MenuItemOption isChecked={filtro === "upcoming`" ? true : false} value="upcoming">Próximos
+                            <MenuItemOption isChecked={filtro === "upcoming" ? true : false} value="upcoming">Próximos
                                 a serem lançados</MenuItemOption>
                         </LinkTo>
                         <LinkTo to={`/popular`}>

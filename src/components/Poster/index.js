@@ -1,5 +1,4 @@
 import React from "react";
-
 import { Link as LinkTo } from "react-router-dom";
 import { Box, Tag } from "@chakra-ui/react";
 
