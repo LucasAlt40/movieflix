@@ -8,7 +8,7 @@ export default function Home() {
             <header>
                 <Header/>
             </header>
-            <main style={{width: "100%", height: "100%", margin: "0", padding: "0", background: "#323232"}}>
+            <main style={{background: "#323232"}}>
                 <Catalog/>
             </main>
         </>

@@ -3,27 +3,3 @@
   padding: 0;
 }
 
-.pagination {
-  width: 100px;
-  margin: 4rem auto;
-}
-
-.paginationButtons {
-  width: 80%;
-  list-style: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.paginationButtons a {
-  padding: 10px;
-  margin: 8px;
-  border-radius: 5px;
-  cursor: pointer;
-  color: white;
-}
-
-.paginationActive a {
-  background-color: #00A3C4;
-}

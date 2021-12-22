@@ -48,13 +48,14 @@ export default function Catalog() {
                 pageCount={totalPages}
                 onPageChange={handleNextPage}
             />
-            <h1 align="center" color="#FFF">Filmes {filtro === undefined ? "Passando agora" : filtro} </h1>
+            <h1 align="center" color="#FFF">Filmes {filtro === undefined ? "em Cartaz" : filtro} </h1>
             <Flex
                 wrap="wrap"
                 margin="4rem auto"
                 width="100rem"
                 align="center"
                 justifyContent="center"
+                margin="0 auto"
             >
                 {filme.map((film) => (
                     <Poster key={film.id} film={film}/>

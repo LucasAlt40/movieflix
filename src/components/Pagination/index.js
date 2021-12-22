@@ -3,6 +3,8 @@ import ReactPaginate from "react-paginate";
 import {Button} from "@chakra-ui/react";
 import {ArrowBackIcon, ArrowForwardIcon} from "@chakra-ui/icons";
 
+import "./style.css";
+
 export default function Pagination(props) {
 
     const { pageCount, onPageChange } = props;
