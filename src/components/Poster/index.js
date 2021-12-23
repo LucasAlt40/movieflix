@@ -25,12 +25,12 @@ export default function Poster(props) {
       ) : (
         <h1>Não foi possivel encontrar o poster do filme</h1>
       )}
-      <Box className="film-box" bg="#114B5F" w="100%" h="70px" >
+      <Box className="film-box" bg="#252525" w="100%" h="70px" >
         <div className="film-title">
           <p>
             {film.title} ({date}){" "}
           </p>
-          <Tag className="film-vote" size="lg" variant="solid" bg="blue.500">
+          <Tag className="film-vote" size="lg" variant="solid" bg="#000">
             {film.vote_average}
           </Tag>
         </div>

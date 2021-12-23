@@ -48,7 +48,7 @@ export default function Search() {
 
   return (
     <>
-      <Button ref={btnRef} colorScheme="teal" onClick={onOpen}>
+      <Button ref={btnRef} style={{color: "#FFF"}} bg="#414141" onClick={onOpen}>
         <SearchIcon /> Procurar
       </Button>
       <Drawer
@@ -68,7 +68,6 @@ export default function Search() {
               ? valueSearch
               : result.map((res) => {
                   if (!valueSearch) {
-                    return;
                   } else {
                     return (
                       <Box

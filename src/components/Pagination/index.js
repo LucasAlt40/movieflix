@@ -14,12 +14,12 @@ export default function Pagination(props) {
             <ReactPaginate
                 pageRangeDisplayed={5}
                 previousLabel={
-                    <Button bg="blue.500" leftIcon={<ArrowBackIcon/>}>
+                    <Button bg="#AF0404" leftIcon={<ArrowBackIcon/>}>
                         Anterior
                     </Button>
                 }
                 nextLabel={
-                    <Button bg="blue.500" rightIcon={<ArrowForwardIcon/>}>
+                    <Button bg="#AF0404" rightIcon={<ArrowForwardIcon/>}>
                         Próxima
                     </Button>
                 }

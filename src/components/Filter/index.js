@@ -19,7 +19,7 @@ export default function Filter() {
     return (
         <>
             <Menu closeOnSelect={false}>
-                <MenuButton as={Button} colorScheme="blue">
+                <MenuButton as={Button} style={{color: "#000"}} bg="#FFF">
                     Filtros
                 </MenuButton>
                 <MenuList minWidth="240px">
@@ -29,16 +29,16 @@ export default function Filter() {
                         type="radio"
                     >
                         <LinkTo to={`/upcoming`}>
-                            <MenuItemOption isChecked={filtro === "upcoming" ? true : false} value="upcoming">Próximos
+                            <MenuItemOption isChecked={filtro === "upcoming"} value="upcoming">Próximos
                                 a serem lançados</MenuItemOption>
                         </LinkTo>
                         <LinkTo to={`/popular`}>
-                            <MenuItemOption isChecked={filtro === "popular" ? true : false}
-                                            value="popular">Populares</MenuItemOption>
+                            <MenuItemOption isChecked={filtro === "popular"}
+                                            value="popular">Em alta</MenuItemOption>
                         </LinkTo>
                         <LinkTo to={`/top_rated`}>
-                            <MenuItemOption isChecked={filtro === "top_rated" ? true : false} value="top_rated">
-                                Melhores Avaliados
+                            <MenuItemOption isChecked={filtro === "top_rated"} value="top_rated">
+                                Favoritos pela crítica
                             </MenuItemOption>
                         </LinkTo>
                     </MenuOptionGroup>

@@ -19,11 +19,11 @@ export default function Catalog() {
 
     useEffect(() => {
         if (filtro === "upcoming") {
-            setFilterMovie("próximos");
+            setFilterMovie("próximos a lançar");
         } else if (filtro === "popular") {
-            setFilterMovie("populares");
+            setFilterMovie("em alta");
         } else if (filtro === "top_rated") {
-            setFilterMovie("melhores avaliados");
+            setFilterMovie("favoritos pela crítica");
         }
     }, [filtro]);
 
@@ -63,7 +63,6 @@ export default function Catalog() {
 
             <Flex
                 wrap="wrap"
-                margin="4rem auto"
                 width="100rem"
                 align="center"
                 justifyContent="center"
