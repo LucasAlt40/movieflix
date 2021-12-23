@@ -2,13 +2,12 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  color: #212121;
+  color: #FFF;
   font-weight: bold;
 }
 
 .film-vote {
   margin-left: 8px;
-  color: black;
   display: flex;
   justify-content: center;
 }

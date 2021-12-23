@@ -5,7 +5,7 @@ import Pagination from "../Pagination";
 import Poster from "../Poster";
 import getData from "../../functions/getData";
 
-import { Flex } from "@chakra-ui/react";
+import {Flex, Heading } from "@chakra-ui/react";
 
 import "./style.css";
 
@@ -14,7 +14,18 @@ export default function Catalog() {
     const [loading, setLoading] = useState(true);
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(0);
+    const [filterMovie, setFilterMovie] = useState("");
     const {filtro} = useParams();
+
+    useEffect(() => {
+        if (filtro === "upcoming") {
+            setFilterMovie("próximos");
+        } else if (filtro === "popular") {
+            setFilterMovie("populares");
+        } else if (filtro === "top_rated") {
+            setFilterMovie("melhores avaliados");
+        }
+    }, [filtro]);
 
     const apiKey = process.env.REACT_APP_API_KEY;
 
@@ -41,14 +52,15 @@ export default function Catalog() {
     }
 
 
-
     return (
         <>
             <Pagination
                 pageCount={totalPages}
                 onPageChange={handleNextPage}
             />
-            <h1 align="center" color="#FFF">Filmes {filtro === undefined ? "em Cartaz" : filtro} </h1>
+
+            <Heading color="white" align="center">{`Filmes ${filtro === undefined ? "em Cartaz" : filterMovie}`}</Heading>
+
             <Flex
                 wrap="wrap"
                 margin="4rem auto"
