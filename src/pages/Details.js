@@ -1,5 +1,5 @@
 /* eslint-disable */
-import {Box, Button, Center, Container, Divider, Heading} from "@chakra-ui/react";
+import {Box, Button, Center, Container, Divider, Heading, Tag} from "@chakra-ui/react";
 import { Link as LinkTo, useParams } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
@@ -36,37 +36,39 @@ export default function Details() {
     <>
       <Header />
 
-      <Center>
-        <div className="details-container">
-          <Heading align="center">{film?.title ? film.title : "Filme não encontrado"}</Heading>
-          <img
-            src={`https://image.tmdb.org/t/p/w300/${film.poster_path}`}
-            alt="poster filme"
-            style={{ objectFit: "cover", height: "450px", margin: "1rem" }}
-          />
-        </div>
-      </Center>
+      <main style={{background: "#000", height: "100%"}}>
+        <Center>
+          <div className="details-container">
+            <Heading align="center" style={{color: "#FFF"}}>{film?.title ? film.title : "Filme não encontrado"}</Heading>
+            <img
+                src={`https://image.tmdb.org/t/p/w300/${film.poster_path}`}
+                alt="poster filme"
+                style={{ objectFit: "cover", height: "450px", margin: "1rem" }}
+            />
+          </div>
+        </Center>
 
-      <Center>
-        <Container>
-          <Box bg={"#1C4532"} w={"100%"} p={5} color={"white"}>
-            <div>
-              <p>
-                {film?.overview ? film.overview : "Descrição não encontrada"}
-              </p>
-              <h2 style={{ color: "red" }}>
-                {film?.vote_average ? film.vote_average : "Nota não encontrada"}
-              </h2>
-            </div>
-            <Divider m={2} />
-            <LinkTo to={"/"}>
-              <Button leftIcon={<ArrowBackIcon />} bg={"grey"}>
-                Voltar para Home
-              </Button>
-            </LinkTo>
-          </Box>
-        </Container>
-      </Center>
+        <Center>
+          <Container>
+            <Box bg={"#141414"} w={"100%"} p={5} color={"white"}>
+              <div>
+                <p>
+                  {film?.overview ? film.overview : "Descrição não encontrada"}
+                </p>
+                <Tag bg="pink" size="lg" style={{ color: "red" }}>
+                  {film?.vote_average ? film.vote_average : "Nota não encontrada"}
+                </Tag>
+              </div>
+              <Divider m={2} />
+              <LinkTo style={{margin: "auto"}} to={"/"}>
+                <Button leftIcon={<ArrowBackIcon />} bg={"#fc00f4"}>
+                  Voltar para Home
+                </Button>
+              </LinkTo>
+            </Box>
+          </Container>
+        </Center>
+      </main>
     </>
   );
 }
