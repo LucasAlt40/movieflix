@@ -1,12 +1,12 @@
 /* eslint-disable */
-import {Box, Button, Center, Container, Divider, Heading, Tag} from "@chakra-ui/react";
-import { Link as LinkTo, useParams } from "react-router-dom";
+import {Box, Center, Container, Divider, Heading, Tag} from "@chakra-ui/react";
+import { useParams } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
-import { ArrowBackIcon } from "@chakra-ui/icons";
 import getData from "../functions/getData";
 
 import "../styles/details.css";
+import BackButton from "../components/BackButton";
 
 export default function Details() {
   const [loading, setLoading] = useState(true);
@@ -60,11 +60,7 @@ export default function Details() {
                 </Tag>
               </div>
               <Divider m={2} />
-              <LinkTo style={{margin: "auto"}} to={"/"}>
-                <Button leftIcon={<ArrowBackIcon />} bg={"#fc00f4"}>
-                  Voltar para Home
-                </Button>
-              </LinkTo>
+              <BackButton />
             </Box>
           </Container>
         </Center>
