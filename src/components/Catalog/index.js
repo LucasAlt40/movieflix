@@ -1,20 +1,24 @@
 /* eslint-disable */
 import React, {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
-import Pagination from "../Pagination";
+// import Pagination from "../Pagination";
 import Poster from "../Poster";
 import getData from "../../functions/getData";
 
 import { Heading } from "@chakra-ui/react";
 
 import "./style.css";
+
 import { Swiper, SwiperSlide } from "swiper/react";
+import SwiperCore, { Pagination, Navigation } from "swiper";
+SwiperCore.use([Pagination, Navigation]);
 
 export default function Catalog() {
     const [filme, setFilme] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [page, setPage] = useState(1);
-    const [totalPages, setTotalPages] = useState(0);
+    // const [page, setPage] = useState(1);
+    const [navigation, setNavigation] = useState(false);
+    // const [totalPages, setTotalPages] = useState(0);
     const [filterMovie, setFilterMovie] = useState("");
     const {filtro} = useParams();
 
@@ -44,9 +48,9 @@ export default function Catalog() {
 
     }, [page, filtro]);
 
-    const handleNextPage = ({selected}) => {
+    /*const handleNextPage = ({selected}) => {
         setPage(selected + 1);
-    };
+    };*/
 
     if (loading) {
         return <h1>Loading...</h1>;
@@ -55,27 +59,29 @@ export default function Catalog() {
 
     return (
         <>
-            <Pagination
+            {/*<Pagination
                 pageCount={totalPages}
                 onPageChange={handleNextPage}
-            />
+            />*/}
 
             <Heading color="white" align="center">{`Filmes ${filtro === undefined ? "em Cartaz" : filterMovie}`}</Heading>
 
-            {/*<Flex
-                wrap="wrap"
-                width="100rem"
-                align="center"
-                justifyContent="center"
-                margin="0 auto"
+
+
+            <Swiper
+                style={{border: "3px solid #FFF", height: "650px", width: "80%"}}
+                slidesPerView={4}
+
+                navigation={navigation}
             >
-                {filme.map((film) => (
-                    <Poster key={film.id} film={film}/>
-                ))}
-            </Flex>*/}
-            <Swiper slidesPerView={3} spaceBetween={30} style={{display: "flex", flexDirection: "row"}}>
                 {filme.map(movie => (
-                    <SwiperSlide key={movie.id}><Poster film={movie}/></SwiperSlide>
+                    <SwiperSlide
+                        onMouseEnter={() => setNavigation(true)}
+                        onMouseLeave={() => setNavigation(false)}
+                        key={movie.id}
+                    >
+                        <Poster film={movie}/>
+                    </SwiperSlide>
                 ))}
             </Swiper>
         </>

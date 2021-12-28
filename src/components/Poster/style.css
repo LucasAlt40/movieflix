@@ -13,10 +13,18 @@
 }
 
 .poster {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   width: 300px;
-  margin: 1rem;
   height: 550px;
+  margin: auto;
   transition: all .2s ease-in-out;
+}
+
+.poster img {
+  object-fit: cover;
 }
 
 .poster:hover {
