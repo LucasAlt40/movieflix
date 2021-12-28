@@ -5,9 +5,10 @@ import Pagination from "../Pagination";
 import Poster from "../Poster";
 import getData from "../../functions/getData";
 
-import {Flex, Heading } from "@chakra-ui/react";
+import { Heading } from "@chakra-ui/react";
 
 import "./style.css";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 export default function Catalog() {
     const [filme, setFilme] = useState([]);
@@ -61,7 +62,7 @@ export default function Catalog() {
 
             <Heading color="white" align="center">{`Filmes ${filtro === undefined ? "em Cartaz" : filterMovie}`}</Heading>
 
-            <Flex
+            {/*<Flex
                 wrap="wrap"
                 width="100rem"
                 align="center"
@@ -71,7 +72,12 @@ export default function Catalog() {
                 {filme.map((film) => (
                     <Poster key={film.id} film={film}/>
                 ))}
-            </Flex>
+            </Flex>*/}
+            <Swiper slidesPerView={3} spaceBetween={30} style={{display: "flex", flexDirection: "row"}}>
+                {filme.map(movie => (
+                    <SwiperSlide key={movie.id}><Poster film={movie}/></SwiperSlide>
+                ))}
+            </Swiper>
         </>
     );
 }
