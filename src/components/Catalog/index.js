@@ -36,17 +36,17 @@ export default function Catalog() {
 
     async function fetchApi() {
         const response = await getData(
-            `/movie/${filtro === undefined ? "now_playing" : filtro}?api_key=${apiKey}&language=pt-BR&page=${page.toString()}`
+            `/movie/${filtro === undefined ? "now_playing" : filtro}?api_key=${apiKey}&language=pt-BR}`
         );
         setFilme(response.results);
-        setTotalPages(response.total_pages);
+
         setLoading(false);
     }
 
     useEffect(() => {
         fetchApi();
 
-    }, [page, filtro]);
+    }, [filtro]);
 
     /*const handleNextPage = ({selected}) => {
         setPage(selected + 1);
@@ -72,12 +72,10 @@ export default function Catalog() {
                 style={{border: "3px solid #FFF", height: "650px", width: "80%"}}
                 slidesPerView={4}
 
-                navigation={navigation}
+                navigation={true}
             >
                 {filme.map(movie => (
                     <SwiperSlide
-                        onMouseEnter={() => setNavigation(true)}
-                        onMouseLeave={() => setNavigation(false)}
                         key={movie.id}
                     >
                         <Poster film={movie}/>
