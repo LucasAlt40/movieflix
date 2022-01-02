@@ -17,7 +17,6 @@ export default function Catalog() {
     const [filme, setFilme] = useState([]);
     const [loading, setLoading] = useState(true);
     // const [page, setPage] = useState(1);
-    const [navigation, setNavigation] = useState(false);
     // const [totalPages, setTotalPages] = useState(0);
     const [filterMovie, setFilterMovie] = useState("");
     const {filtro} = useParams();
