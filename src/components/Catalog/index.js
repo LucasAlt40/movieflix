@@ -38,10 +38,6 @@ export default function Catalog() {
 
     }, [filtro]);
 
-    /*const handleNextPage = ({selected}) => {
-        setPage(selected + 1);
-    };*/
-
     if (loading) {
         return <h1>Loading...</h1>;
     }
