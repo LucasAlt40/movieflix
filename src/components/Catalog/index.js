@@ -1,19 +1,14 @@
 /* eslint-disable */
 import React, {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
-import Pagination from "../Pagination";
-import Poster from "../Poster";
 import getData from "../../functions/getData";
 
-import {Flex, Heading } from "@chakra-ui/react";
-
 import "./style.css";
+import Carousel from "../Carousel";
 
 export default function Catalog() {
     const [filme, setFilme] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [page, setPage] = useState(1);
-    const [totalPages, setTotalPages] = useState(0);
     const [filterMovie, setFilterMovie] = useState("");
     const {filtro} = useParams();
 
@@ -31,21 +26,17 @@ export default function Catalog() {
 
     async function fetchApi() {
         const response = await getData(
-            `/movie/${filtro === undefined ? "now_playing" : filtro}?api_key=${apiKey}&language=pt-BR&page=${page.toString()}`
+            `/movie/${filtro === undefined ? "now_playing" : filtro}?api_key=${apiKey}&language=pt-BR}`
         );
         setFilme(response.results);
-        setTotalPages(response.total_pages);
+
         setLoading(false);
     }
 
     useEffect(() => {
         fetchApi();
 
-    }, [page, filtro]);
-
-    const handleNextPage = ({selected}) => {
-        setPage(selected + 1);
-    };
+    }, [filtro]);
 
     if (loading) {
         return <h1>Loading...</h1>;
@@ -54,24 +45,11 @@ export default function Catalog() {
 
     return (
         <>
-            <Pagination
-                pageCount={totalPages}
-                onPageChange={handleNextPage}
+            <Carousel
+                filter={filtro}
+                filterMovie={filterMovie}
+                movies={filme}
             />
-
-            <Heading color="white" align="center">{`Filmes ${filtro === undefined ? "em Cartaz" : filterMovie}`}</Heading>
-
-            <Flex
-                wrap="wrap"
-                width="100rem"
-                align="center"
-                justifyContent="center"
-                margin="0 auto"
-            >
-                {filme.map((film) => (
-                    <Poster key={film.id} film={film}/>
-                ))}
-            </Flex>
         </>
     );
 }

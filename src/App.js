@@ -1,6 +1,8 @@
 import React from "react";
 
 import {ChakraProvider} from "@chakra-ui/react";
+import "swiper/swiper-bundle.css";
+import "swiper/react"
 
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 
