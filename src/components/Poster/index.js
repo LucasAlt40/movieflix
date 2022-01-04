@@ -11,6 +11,16 @@ export default function Poster(props) {
   const dateApi = new Date(film.release_date);
   const date = dateApi.getFullYear();
 
+  const changeColorVote = (vote) => {
+    if (vote >= 8) {
+      return "green";
+    } else if (vote < 8 && vote > 6) {
+      return "yellow";
+    } else {
+      return "red";
+    }
+  }
+
   return (
     <LinkTo
       className="poster"
@@ -33,7 +43,7 @@ export default function Poster(props) {
               <p>
                 {film.title} ({date}){" "}
               </p>
-              <Tag className="film-vote" size="lg" variant="solid" bg="#000">
+              <Tag className="film-vote" size="lg" variant="solid" bg="#000" color={changeColorVote(film.vote_average)}>
                 {film.vote_average}
               </Tag>
             </div>
