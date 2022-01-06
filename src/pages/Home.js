@@ -5,12 +5,8 @@ import Header from "../components/Header";
 export default function Home() {
     return (
         <>
-            <header>
-                <Header/>
-            </header>
-            <main style={{background: "#141414", height: "100vh"}}>
-                <Catalog/>
-            </main>
+            <Header/>
+            <Catalog/>
         </>
     );
 }

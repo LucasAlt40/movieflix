@@ -1,6 +1,6 @@
 /* eslint-disable */
-import React, {useEffect, useState} from "react";
-import {useParams} from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import getData from "../../functions/getData";
 
 import "./style.css";
@@ -10,7 +10,7 @@ export default function Catalog() {
     const [filme, setFilme] = useState([]);
     const [loading, setLoading] = useState(true);
     const [filterMovie, setFilterMovie] = useState("");
-    const {filtro} = useParams();
+    const { filtro } = useParams();
 
     useEffect(() => {
         if (filtro === "upcoming") {
@@ -24,10 +24,10 @@ export default function Catalog() {
 
     const apiKey = process.env.REACT_APP_API_KEY;
 
+    const handleChangeFilter = () => filtro === undefined ? "now_playing" : filtro;
+
     async function fetchApi() {
-        const response = await getData(
-            `/movie/${filtro === undefined ? "now_playing" : filtro}?api_key=${apiKey}&language=pt-BR}`
-        );
+        const response = await getData(`/movie/${handleChangeFilter()}?api_key=${apiKey}&language=pt-BR}`);
         setFilme(response.results);
 
         setLoading(false);
@@ -42,14 +42,33 @@ export default function Catalog() {
         return <h1>Loading...</h1>;
     }
 
-
     return (
-        <>
-            <Carousel
-                filter={filtro}
-                filterMovie={filterMovie}
-                movies={filme}
-            />
-        </>
+        <main style={{background: "#141414", margin: "0"}}>
+            <div>
+                <Carousel
+                    filter={filtro}
+                    filterMovie={filterMovie}
+                    movies={filme}
+                />
+
+                <Carousel
+                    filter={filtro}
+                    filterMovie={filterMovie}
+                    movies={filme}
+                />
+
+                <Carousel
+                    filter={filtro}
+                    filterMovie={filterMovie}
+                    movies={filme}
+                />
+
+                <Carousel
+                    filter={filtro}
+                    filterMovie={filterMovie}
+                    movies={filme}
+                />
+            </div>
+        </main>
     );
 }
