@@ -2,11 +2,14 @@
 import React from "react";
 import Search from "../Search";
 import Filter from "../Filter";
-import { Heading } from "@chakra-ui/react";
+import {Button, Heading, useColorMode} from "@chakra-ui/react";
 
 import "./style.css";
 
 export default function Header() {
+
+  const { colorMode, toggleColorMode } = useColorMode("dark");
+  console.log(colorMode)
 
   return (
     <header
@@ -20,6 +23,9 @@ export default function Header() {
         </div>{" "}
         <div style={{ margin: "auto 1rem" }}>
           <Search />
+        </div>
+        <div style={{ margin: "auto 1rem" }}>
+          <Button bg={"#FFF"} color={"#000"} onClick={toggleColorMode}>{colorMode === 'light' ? "Dark" : "Light"} mode</Button>
         </div>
       </div>
     </header>

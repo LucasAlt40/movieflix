@@ -31,7 +31,7 @@ export default function Poster(props) {
     >
       {film?.poster_path ? (
         <img
-          src={`https://image.tmdb.org/t/p/w300` + film.poster_path}
+          src={`https://image.tmdb.org/t/p/original` + film.poster_path}
           alt="poster img"
         />
       ) : (

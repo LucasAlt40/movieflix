@@ -3,6 +3,8 @@ import React from "react";
 import {ChakraProvider} from "@chakra-ui/react";
 import "swiper/swiper-bundle.css";
 import "swiper/react"
+import "./styles/global.css";
+
 
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 
@@ -15,7 +17,6 @@ function App() {
             <Router>
                 <Routes>
                     <Route exact path="/" element={<Home/>}/>
-                    <Route path="/:filtro" element={<Home/>}/>
                     <Route path="/Details/:nome/:id" element={<Details/>}/>
                 </Routes>
             </Router>

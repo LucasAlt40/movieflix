@@ -1,0 +1,8 @@
+.title-filter-movie {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 40px;
+    margin: auto;
+}
