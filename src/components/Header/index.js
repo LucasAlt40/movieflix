@@ -9,7 +9,6 @@ import "./style.css";
 export default function Header() {
 
   const { colorMode, toggleColorMode } = useColorMode("dark");
-  console.log(colorMode)
 
   return (
     <header

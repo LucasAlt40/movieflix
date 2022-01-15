@@ -3,7 +3,7 @@ import React, {useEffect, useState} from "react";
 import {Swiper, SwiperSlide} from "swiper/swiper-react.cjs";
 import SwiperCore, {Navigation, Pagination} from "swiper";
 
-import {Heading} from "@chakra-ui/react";
+import {Heading, Skeleton} from "@chakra-ui/react";
 
 import getData from "../../functions/getData";
 import Poster from "../Poster";
@@ -16,50 +16,51 @@ export default function Carousel(props) {
 
     const [loading, setLoading] = useState(true);
     const [movie, setMovie] = useState([]);
+    const [error, setError] = useState(0);
     const { filter, ...rest } = props;
     const apiKey = process.env.REACT_APP_API_KEY;
 
     async function fetchApi() {
-        const response = await getData(`/movie/${filter}?api_key=${apiKey}&language=pt-BR}`);
-        setMovie(response.results);
-
-        setLoading(false);
+        await getData(`/movie/${filter}?api_key=${apiKey}&language=pt-BR}`)
+            .then((response) => {
+                console.log(response)
+                setLoading(false);
+                return setMovie(response.results);
+            })
+            .catch((error) => {
+                console.log(error.message);
+                setLoading(false);
+                return setError(error.response.status);
+            });
+            if (error) {
+                console.log(error);
+            }
     }
 
-    console.log(movie)
     useEffect(() => {
         fetchApi();
-    }, []); // eslint-disable-line
-
-    if (loading) {
-        return <h1>Loading...</h1>;
-    }
-
-    // const swiper = new Swiper('.swiper', {
-    //     navigation: {
-    //         hideOnClick: true,
-    //     }
-    // })
-
+    }, [filter]); // eslint-disable-line
+    
     return (
         <>
             <div {...rest}>
-                <Heading color="white" align="center">{`Filmes ${filter === undefined ? "em Cartaz" : "teste"}`}</Heading>
-                <Swiper
-                    style={{width: "99vw"}}
-                    spaceBetween={50}
-                    slidesPerView={4}
-                    loop={true}
-                    navigation={true}
-                    centeredSlides={true}
-                    centeredSlidesBounds={true}
-                >
-                    {movie.map(movie => (
-                        <SwiperSlide key={movie.id}>
-                            <Poster film={movie}/>
-                        </SwiperSlide>
-                    ))}
-                </Swiper>
+                <Skeleton isLoading={!loading}>
+                    <Heading color="white" align="left" style={{margin: "1rem"}}>{`Filmes ${filter}`}</Heading>
+                    <Swiper
+                        style={{width: "99vw"}}
+                        spaceBetween={50}
+                        slidesPerView={4}
+                        loop={true}
+                        centeredSlides={true}
+                        centeredSlidesBounds={true}
+                    >
+                        {movie.map(movie => (
+                            <SwiperSlide key={movie?.id}>
+                                <Poster movieId={movie?.id}/>
+                            </SwiperSlide>
+                        ))}
+                    </Swiper>
+                </Skeleton>
             </div>
         </>
     );

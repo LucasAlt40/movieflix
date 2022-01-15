@@ -6,33 +6,16 @@ import Carousel from "../Carousel";
 import "./style.css";
 
 export default function Catalog() {
+    const filters = ["upcoming", "now_playing", "popular", "top_rated"];
 
     return (
         <main>
             <div>
-                <div className="carousel-container">
-                    <Carousel
-                        filter={"upcoming"}
-                    />
-                </div>
-
-                <div className="carousel-container">
-                    <Carousel
-                        filter={"now_playing"}
-                    />
-                </div>
-
-                <div className="carousel-container">
-                    <Carousel
-                        filter={"popular"}
-                    />
-                </div>
-
-                <div className="carousel-container">
-                    <Carousel
-                        filter={"top_rated"}
-                    />
-                </div>
+                {filters.map((filter) => (
+                    <div className="carousel-container" key={filter}>
+                        <Carousel filter={filter} />
+                    </div>
+                ))}
             </div>
         </main>
     );

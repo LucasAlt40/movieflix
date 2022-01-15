@@ -20,6 +20,10 @@ export default function Details() {
     const data = await getData(
       `/movie/${id}?api_key=${apiKey}&language=pt-BR`
     );
+    const movieImage = await getData(
+        `/movie/${id}/images?api_key=${apiKey}&language=pt-BR`
+    );
+    console.log(movieImage);
     setFilm(data);
     setLoading(false);
   }
@@ -31,6 +35,8 @@ export default function Details() {
   if (loading) {
     return <h1>Loading...</h1>;
   }
+
+  console.log(film);
 
   return (
     <>

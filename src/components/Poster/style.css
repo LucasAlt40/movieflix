@@ -1,12 +1,27 @@
-.film-title {
+.movie-infos {
+  width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
   color: #FFF;
   font-weight: bold;
 }
 
-.film-vote {
+.movie-infos .movie-title-vote {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.movie-infos .movie-additional-info {
+  width: 100%;
+  margin: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.movie-vote {
   margin-left: 8px;
   display: flex;
   justify-content: center;
@@ -31,7 +46,7 @@
   transform: scale(1.2);
 }
 
-.film-box {
+.movie-box {
   display: flex;
   align-items: center;
   justify-content: center;
