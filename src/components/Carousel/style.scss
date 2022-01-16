@@ -1,0 +1,92 @@
+.container {
+  max-width: 75vw;
+
+  .buttons {
+    width: 100%;
+    text-align: right;
+
+    button {
+      color: #00adb5;
+      background: none;
+      border: 2px solid #00adb5;
+      border-radius: 100%;
+      padding: 6px;
+      margin: .5rem;
+      cursor: pointer;
+
+      &:hover {
+        color: #FFF;
+        border: 2px solid #FFF;
+      }
+
+    }
+  }
+
+  .carousel {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    .item {
+      background: #FFF;
+      margin: 10px;
+      padding: 10px;
+      width: 280px;
+      flex: none;
+
+      .poster {
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+
+      .info {
+        height: 140px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        span {
+          display: block;
+          text-align: center;
+          color: #1e1e1e;
+          padding: 5px;
+          border-radius: 10px;
+        }
+
+        .name {
+          font-size: 1.2rem;
+          font-weight: bold;
+          margin: 10px 0;
+        }
+
+        .genre {
+          font-size: 0.8rem;
+          text-decoration: line-through;
+          flex-grow: 1;
+        }
+
+        .vote {
+          margin-top: 10px;
+          font-size: 1.2rem;
+          font-weight: bold;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          img {
+            width: 50%;
+            height: 50%;
+            object-fit: cover;
+            border-radius: 20px;
+          }
+        }
+      }
+    }
+  }
+}

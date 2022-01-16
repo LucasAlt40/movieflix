@@ -4,9 +4,10 @@ import CatalogHome from "../components/CatalogHome";
 
 export default function Home() {
   return (
-    <main style={{ display: "flex" }}>
+    <main style={{ display: "flex", justifyContent: "space-between" }}>
       <Sidebar />
       <CatalogHome />
+      <Sidebar />
     </main>
   );
 }
