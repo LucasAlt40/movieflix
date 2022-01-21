@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import axiosGet  from "../../utils/axiosGet";
+import { axiosGet } from "../../utils";
 import {isEmpty} from "lodash";
 
 import "./style.scss";
