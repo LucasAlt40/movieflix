@@ -11,5 +11,7 @@ module.exports = () => {
     // middlewares
     app.use(bodyParser.json());
 
+    require('../routes/moviesPopular');
+
     return app;
 }
