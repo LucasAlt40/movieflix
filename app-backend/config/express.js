@@ -1,17 +1,19 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const config = require('config');
+const express = require("express");
+const bodyParser = require("body-parser");
+const config = require("config");
+const cors = require("cors");
 
 module.exports = () => {
-    const app = express();
+  const app = express();
 
-    // Setting application variables
-    app.set('port', process.env.PORT || config.get('server.port'));
+  // Setting application variables
+  app.set("port", process.env.PORT || config.get("server.port"));
 
-    // middlewares
-    app.use(bodyParser.json());
+  // Middleware's
+  app.use(bodyParser.json(), cors());
 
-    require('../routes/moviesPopular');
+  // Routes
+  require("../routes/moviesPopular")(app);
 
-    return app;
-}
+  return app;
+};

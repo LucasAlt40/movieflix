@@ -1,1 +1,0 @@
-export { axiosGet } from "./axiosGet";

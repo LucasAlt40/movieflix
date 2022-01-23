@@ -1,0 +1,114 @@
+aside {
+  width: 250px;
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+
+  border-left: 1px solid #393e46;
+  color: #fff;
+
+  .searchBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    margin: 2rem auto;
+
+    button {
+      width: 200px;
+      height: 40px;
+      display: flex;
+      justify-content: left;
+      padding: 0 1rem;
+      align-items: center;
+
+      font-size: 18px;
+
+      border: 1px solid #4c525a;
+      background: none;
+      color: #4c525a;
+
+      border-radius: 20px;
+
+      cursor: pointer;
+
+      transition: all 0.2s ease-in-out;
+
+      &:hover {
+        border: 1px solid #fff;
+        color: #fff;
+      }
+    }
+  }
+
+  .moviesSideBar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 2rem auto;
+
+    .posterMovies {
+      display: flex;
+      width: 100%;
+      flex-direction: column;
+      align-items: left;
+      margin: 1rem;
+
+      .posterInfo {
+        display: flex;
+        height: 100%;
+
+        .nameAndGenres {
+          display: flex;
+          flex-direction: column;
+          align-items: left;
+          margin: 1rem;
+
+          p {
+            color: #4c525a;
+            font-size: 12px;
+          }
+        }
+
+        .voteMovie {
+          display: flex;
+          align-items: left;
+          margin: 2.4rem 1rem;
+
+        }
+
+        img {
+          width: 92px;
+          object-fit: cover;
+          margin: 1rem;
+          border-radius: 8px;
+        }
+      }
+    }
+
+    .buttonSeeMore {
+      background: #00adb5;
+      border: none;
+      border-radius: 12px;
+      width: 200px;
+      height: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      transition: all 0.2s ease-in-out;
+      text-decoration: none;
+      color: #fff;
+      font-size: 20px;
+
+      &:hover {
+        transform: scale(1.2);
+        text-decoration: underline;
+      }
+    }
+  }
+}

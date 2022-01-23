@@ -1,13 +1,14 @@
 import React from "react";
-import Sidebar from "../components/Sidebar";
 import CatalogHome from "../components/CatalogHome";
+import SideMenu from "../components/SideMenu";
+import SideMenuSearch from "../components/SideMenuSearch";
 
 export default function Home() {
   return (
     <main style={{ display: "flex", justifyContent: "space-between" }}>
-      <Sidebar />
+      <SideMenu />
       <CatalogHome />
-      <Sidebar />
+      <SideMenuSearch />
     </main>
   );
 }
