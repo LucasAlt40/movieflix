@@ -14,6 +14,7 @@ module.exports = () => {
 
   // Routes
   require("../routes/moviesPopular")(app);
+  require("../routes/userRegister")(app);
 
   return app;
 };

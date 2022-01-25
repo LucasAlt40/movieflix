@@ -12,7 +12,13 @@ export default function Carousel() {
   const carousel = useRef(null);
 
   const fetchApi = async () => {
-    await axiosGet(`/movies-popular`)
+    const options = {
+      method: "GET",
+      url: "http://localhost:8080/movies-popular",
+      params: { page: 1 },
+    };
+
+    await axiosGet(options)
       .then((response) => {
         setMovies(response.data.results);
         console.log(response.status);
@@ -45,6 +51,7 @@ export default function Carousel() {
           <ArrowForward />
         </button>
       </div>
+      <h1 style={{ color: "white", margin: "1rem" }}>Movies popular</h1>
       <div className="carousel" ref={carousel}>
         {!loading && !isEmpty(movies) ? (
           movies.map((movie) => (

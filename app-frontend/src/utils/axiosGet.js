@@ -1,7 +1,5 @@
 import axios from "axios";
 
-export async function axiosGet(url) {
-  return await axios
-    .get("http://localhost:8080" + url)
-    .then((response) => response);
+export async function axiosGet(options) {
+  return await axios.request(options).then((response) => response);
 }
