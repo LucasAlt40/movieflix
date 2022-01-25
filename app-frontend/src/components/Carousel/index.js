@@ -5,6 +5,7 @@ import { isEmpty } from "lodash";
 import "./style.scss";
 import { Skeleton } from "@mui/material";
 import { ArrowBack, ArrowForward } from "@mui/icons-material";
+import Poster from "../Poster";
 
 export default function Carousel() {
   const [movies, setMovies] = useState([]);
@@ -54,27 +55,7 @@ export default function Carousel() {
       <h1 style={{ color: "white", margin: "1rem" }}>Movies popular</h1>
       <div className="carousel" ref={carousel}>
         {!loading && !isEmpty(movies) ? (
-          movies.map((movie) => (
-            <div className="item" key={movie.id}>
-              <div className="poster">
-                <img
-                  src={"https://image.tmdb.org/t/p/w500/" + movie.poster_path}
-                  alt="movie poster"
-                />
-              </div>
-              <div className="info">
-                <span className="name">{movie.title}</span>
-                <span className="genre">Action, Horror</span>
-                <span className="vote">
-                  <img
-                    src="https://download.logo.wine/logo/IMDb/IMDb-Logo.wine.png"
-                    alt="IMDB LOGO"
-                  />{" "}
-                  {movie.vote_average}
-                </span>
-              </div>
-            </div>
-          ))
+          movies.map((movie) => <Poster key={movie.id} movie={movie} />)
         ) : (
           <Skeleton variant="rect" width={210} height={118} />
         )}

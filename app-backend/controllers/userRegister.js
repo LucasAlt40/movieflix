@@ -9,14 +9,7 @@ module.exports = () => {
 
     const sql = "INSERT INTO users (username, password) VALUES (?, ?)";
     
-    // preciso fazer
-    /* const alreadyExists = await db.all(
-      "SELECT id FROM users WHERE username = (?)",
-      [username],
-      (err, rows) => (err ? err : rows)
-    );
-    console.log(alreadyExists);
-    db.close(); */
+    await db.exec("CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, username VARCHAR(255) NOT NULL, password VARCHAR(255))");
 
     await db.run(sql, [username, password], function (err) {
       if (err) {
@@ -27,6 +20,8 @@ module.exports = () => {
         message: "User created successfully",
       });
     });
+
+    db.close();
   };
 
   return controller;
