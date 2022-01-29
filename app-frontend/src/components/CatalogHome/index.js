@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 import { Button } from "@mui/material";
 
@@ -10,12 +10,19 @@ export default function CatalogComponent() {
     <main className="catalog-container">
       <div className="filtro">
         <ul>
-          <li><Button variant="outlined">TV Series</Button></li>
-          <li><Button variant="contained">Movies</Button></li>
+          <li>
+            <Button variant="outlined">TV Series</Button>
+          </li>
+          <li>
+            <Button variant="contained">Movies</Button>
+          </li>
         </ul>
       </div>
       <div className="carousel">
-          <Carousel />
+        <Carousel movieUrlApi="movies-popular" movieCategory="Movies popular" />
+        <Carousel movieUrlApi="movies-now-playing" movieCategory="Movies now playing" />
+        <Carousel movieUrlApi="movies-upcoming" movieCategory="Movies upcoming" />
+        <Carousel movieUrlApi="movies-top-rated" movieCategory="Movies top rated" />
       </div>
     </main>
   );

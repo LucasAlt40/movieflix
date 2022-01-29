@@ -13,8 +13,10 @@ module.exports = () => {
   app.use(bodyParser.json(), cors());
 
   // Routes
-  require("../routes/moviesPopular")(app);
-  require("../routes/userRegister")(app);
+  require("../src/routes/moviesPopularRoute")(app);
+  require("../src/routes/moviesNowPlayingRoute")(app);
+  require("../src/routes/moviesUpcomingRoute")(app);
+  require("../src/routes/moviesTopRatedRoute")(app);
 
   return app;
 };

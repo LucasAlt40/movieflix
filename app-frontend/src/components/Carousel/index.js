@@ -7,15 +7,19 @@ import { Skeleton } from "@mui/material";
 import { ArrowBack, ArrowForward } from "@mui/icons-material";
 import Poster from "../Poster";
 
-export default function Carousel() {
+export default function Carousel(props) {
+  const { movieUrlApi, movieCategory } = props;
+
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
   const carousel = useRef(null);
 
   const fetchApi = async () => {
+    const url = `http://localhost:8080/${movieUrlApi}`;
+
     const options = {
       method: "GET",
-      url: "http://localhost:8080/movies-popular",
+      url: url,
       params: { page: 1 },
     };
 
@@ -52,7 +56,7 @@ export default function Carousel() {
           <ArrowForward />
         </button>
       </div>
-      <h1 style={{ color: "white", margin: "1rem" }}>Movies popular</h1>
+      <h1 style={{ color: "white", margin: "1rem" }}>{movieCategory}</h1>
       <div className="carousel" ref={carousel}>
         {!loading && !isEmpty(movies) ? (
           movies.map((movie) => <Poster key={movie.id} movie={movie} />)
