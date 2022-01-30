@@ -6,13 +6,19 @@ import {
   Home as HomeIcon,
   Person,
   Dashboard,
-  Logout,
   Settings,
 } from "@mui/icons-material";
 
 import { logo, menu, active, flixTitle } from "./style.module.scss";
 
-export default function SideMenu() {
+export default function SideMenu(props) {
+  const {
+    activePageHome,
+    activePageAbout,
+    activePageCompleteCatalog,
+    activePageSettings,
+  } = props;
+
   return (
     <aside>
       <div className={logo}>
@@ -25,17 +31,17 @@ export default function SideMenu() {
       <nav className={menu}>
         <h2>Menu</h2>
         <ul>
-          <li className={active}>
+          <li className={activePageHome ? active : ""}>
             <Link to="/">
               <HomeIcon /> Home
             </Link>
           </li>
-          <li>
+          <li className={activePageAbout ? active : ""}>
             <Link to="/">
               <Person /> About
             </Link>
           </li>
-          <li>
+          <li className={activePageCompleteCatalog ? active : ""}>
             <Link to="/">
               <Dashboard /> Complete catalog
             </Link>
@@ -46,14 +52,9 @@ export default function SideMenu() {
       <footer>
         <h2>General</h2>
         <ul>
-          <li>
+          <li className={activePageSettings ? active : ""}>
             <Link to="/">
               <Settings /> Settings{" "}
-            </Link>
-          </li>
-          <li>
-            <Link to="/">
-              <Logout /> Log Out
             </Link>
           </li>
         </ul>

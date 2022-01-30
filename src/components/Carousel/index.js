@@ -48,15 +48,18 @@ export default function Carousel(props) {
 
   return (
     <div className="container">
-      <div className="buttons">
-        <button onClick={handleLeftCLick}>
-          <ArrowBack />{" "}
-        </button>
-        <button onClick={handleRightCLick}>
-          <ArrowForward />
-        </button>
+      <div className="header-carousel">
+        <h1 style={{ color: "white", margin: "1rem" }}>{movieCategory}</h1>
+
+        <div className="buttons">
+          <button onClick={handleLeftCLick}>
+            <ArrowBack />{" "}
+          </button>
+          <button onClick={handleRightCLick}>
+            <ArrowForward />
+          </button>
+        </div>
       </div>
-      <h1 style={{ color: "white", margin: "1rem" }}>{movieCategory}</h1>
       <div className="carousel" ref={carousel}>
         {!loading && !isEmpty(movies) ? (
           movies.map((movie) => <Poster key={movie.id} movie={movie} />)

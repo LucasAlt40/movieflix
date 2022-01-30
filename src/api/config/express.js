@@ -1,13 +1,12 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const config = require("config");
 const cors = require("cors");
 
 module.exports = () => {
   const app = express();
 
   // Setting application variables
-  app.set("port", process.env.PORT || config.get("server.port"));
+  app.set("port", process.env.PORT || 8080);
 
   // Middleware's
   app.use(bodyParser.json(), cors());

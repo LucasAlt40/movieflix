@@ -1,0 +1,39 @@
+.container {
+  max-width: 70vw;
+
+  .header-carousel {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+
+    .buttons {
+      button {
+        color: #00adb5;
+        background: none;
+        border: 2px solid #00adb5;
+        border-radius: 100%;
+        padding: 6px;
+        margin: 0.5rem;
+        cursor: pointer;
+
+        &:hover {
+          color: #fff;
+          border: 2px solid #fff;
+        }
+      }
+    }
+  }
+
+  .carousel {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    max-height: 70vh;
+    align-items: center;
+    height: 60vh;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+}
