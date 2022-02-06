@@ -18,7 +18,7 @@ export default function CatalogComponent() {
           </li>
         </ul>
       </div>
-      <div className="carousel">
+      <div className="carousels-container">
         <Carousel movieUrlApi="movies-popular" movieCategory="Movies popular" />
         <Carousel movieUrlApi="movies-now-playing" movieCategory="Movies now playing" />
         <Carousel movieUrlApi="movies-upcoming" movieCategory="Movies upcoming" />

@@ -9,7 +9,7 @@ import {
   Settings,
 } from "@mui/icons-material";
 
-import { logo, menu, active, flixTitle } from "./style.module.scss";
+import { logo, menu, active, flixTitle, sideMenu } from "./style.module.scss";
 
 export default function SideMenu(props) {
   const {
@@ -20,7 +20,7 @@ export default function SideMenu(props) {
   } = props;
 
   return (
-    <aside>
+    <aside className={sideMenu}>
       <div className={logo}>
         <LocalMovies />
         <h1>

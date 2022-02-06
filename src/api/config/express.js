@@ -12,11 +12,11 @@ module.exports = () => {
   app.use(bodyParser.json(), cors());
 
   // Routes
-  require("../src/routes/moviesPopularRoute")(app);
-  require("../src/routes/moviesNowPlayingRoute")(app);
-  require("../src/routes/moviesUpcomingRoute")(app);
-  require("../src/routes/moviesTopRatedRoute")(app);
-  require("../src/routes/movieDetailsRoute")(app);
+  require("../routes/moviesPopularRoute")(app);
+  require("../routes/moviesNowPlayingRoute")(app);
+  require("../routes/moviesUpcomingRoute")(app);
+  require("../routes/moviesTopRatedRoute")(app);
+  require("../routes/movieDetailsRoute")(app);
 
   return app;
 };

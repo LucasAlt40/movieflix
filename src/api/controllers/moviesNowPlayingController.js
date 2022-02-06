@@ -4,14 +4,14 @@ require("dotenv").config();
 module.exports = () => {
   const controller = {};
 
-  controller.listMoviesTopRated = async (req, res) => {
+  controller.listMoviesNowPlaying = async (req, res) => {
     const query = req.query;
 
     const options = {
       method: "GET",
-      url: "https://api.themoviedb.org/3/movie/top_rated",
+      url: "https://api.themoviedb.org/3/movie/now_playing",
       params: {
-        language: "pt-BR",
+        language: "en-US",
         api_key: process.env.API_KEY,
         page: query.page,
       },

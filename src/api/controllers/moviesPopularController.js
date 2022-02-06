@@ -4,14 +4,14 @@ require("dotenv").config();
 module.exports = () => {
   const controller = {};
 
-  controller.listMoviesUpcoming = async (req, res) => {
+  controller.listMoviesPopular = async (req, res) => {
     const query = req.query;
 
     const options = {
       method: "GET",
-      url: "https://api.themoviedb.org/3/movie/upcoming",
+      url: "https://api.themoviedb.org/3/movie/popular",
       params: {
-        language: "pt-BR",
+        language: "en-US",
         api_key: process.env.API_KEY,
         page: query.page,
       },
