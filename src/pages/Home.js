@@ -7,7 +7,9 @@ export default function Home() {
   return (
     <main style={{ display: "flex", justifyContent: "space-between" }}>
       <SideMenu activePageHome={true} />
-      <CatalogHome />
+      <div style={{ margin: "auto 280px" }}>
+        <CatalogHome />
+      </div>
       <SideMenuSearch />
     </main>
   );

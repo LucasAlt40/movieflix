@@ -4,18 +4,19 @@ require("dotenv").config();
 module.exports = () => {
   const controller = {};
 
-  controller.listMoviesNowPlaying = async (req, res) => {
+  controller.listDetailsMovie = async (req, res) => {
     const query = req.query;
+
+    const url = `https://api.themoviedb.org/3/movie/${query.movieId}`;
 
     const options = {
       method: "GET",
-      url: "https://api.themoviedb.org/3/movie/now_playing",
+      url: url,
       params: {
-        language: "pt-BR",
+        language: "en-US",
         api_key: process.env.API_KEY,
         page: query.page,
       },
-      headers: {},
     };
 
     await axios
@@ -29,7 +30,7 @@ module.exports = () => {
         console.log("Request successful");
       })
       .catch((error) => {
-        res.json(error);
+        res.status(400).json(error.message);
         console.log(error);
         console.log("Request failed");
       });

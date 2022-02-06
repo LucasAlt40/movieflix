@@ -10,6 +10,7 @@ import {
   buttonSeeMore,
   nameAndGenres,
   voteMovie,
+  sideMenuSearch
 } from "./style.module.scss";
 import { Box, Modal } from "@mui/material";
 import { Link } from "react-router-dom";
@@ -33,7 +34,7 @@ export default function SideMenuSearch() {
   };
 
   return (
-    <aside>
+    <aside className={sideMenuSearch}>
       <div className={searchBox}>
         <button onClick={handleOpen}>
           <SearchRounded /> Search

@@ -1,13 +1,15 @@
 import React from "react";
+
 import SideMenu from "../components/SideMenu";
 import SideMenuSearch from "../components/SideMenuSearch";
+import DetailsMovie from "../components/DetailsMovie";
 
 export default function Details() {
   return (
-    <main style={{ display: "flex", justifyContent: "space-between" }}>
+    <main style={{ display: "flex", justifyContent: "space-between", height: "100vh" }}>
       <SideMenu />
-      <div>
-        <h1 style={{ color: "#FFF" }}>Test</h1>
+      <div style={{ margin: "4rem 280px" }}>
+        <DetailsMovie />
       </div>
       <SideMenuSearch />
     </main>

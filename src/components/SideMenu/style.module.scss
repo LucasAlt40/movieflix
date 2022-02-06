@@ -1,12 +1,18 @@
-aside {
+.sideMenu {
   width: 250px;
-  height: 200vh;
+  height: 100vh;
 
   display: flex;
   flex-direction: column;
 
   border-right: 1px solid #393e46;
   color: #fff;
+
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  overflow-x: hidden;
 
   .logo {
     width: 100%;
@@ -20,7 +26,8 @@ aside {
     }
   }
 
-  .menu, footer {
+  .menu,
+  footer {
     margin: 4rem 1rem;
 
     display: flex;

@@ -1,20 +1,20 @@
 import React, { useState } from "react";
 
-import { Star, StarOutline } from "@mui/icons-material";
+import { Favorite, FavoriteBorder } from "@mui/icons-material";
 
 import "./styles.scss";
 
 export default function FavoriteButton() {
-  const [star, setStar] = useState(true);
+  const [favorite, setFavorite] = useState(true);
 
   return (
     <button
       onClick={() => {
-        setStar(!star);
+        setFavorite(!favorite);
       }}
       className="button-favorite"
     >
-      {star ? <StarOutline /> : <Star />}
+      {favorite ? <FavoriteBorder /> : <Favorite />}
     </button>
   );
 }
