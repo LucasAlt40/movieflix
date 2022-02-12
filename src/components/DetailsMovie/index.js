@@ -9,6 +9,7 @@ import FavoriteButton from "../FavoriteButton";
 import "./styles.scss";
 import { ArrowBack } from "@mui/icons-material";
 import { Skeleton } from "@mui/material";
+import { Icon } from "@iconify/react";
 
 export default function DetailsMovie() {
   const { id } = useParams();
@@ -65,6 +66,16 @@ export default function DetailsMovie() {
                 src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
                 alt="poster-movie"
               />
+              <p
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <Icon icon="simple-icons:imdb" color="#ffdb58" width="40" height="40" />{" "}
+                <span style={{ margin: "0 1rem" }}>{movie?.vote_average}</span>
+              </p>
               <p>
                 Runtime: <span>{convertTime(movie?.runtime)}</span>
               </p>

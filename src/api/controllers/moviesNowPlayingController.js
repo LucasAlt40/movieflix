@@ -30,8 +30,8 @@ module.exports = () => {
       })
       .catch((error) => {
         res.json(error);
+        console.log(error.message);
         console.log(error);
-        console.log("Request failed");
       });
   };
 
