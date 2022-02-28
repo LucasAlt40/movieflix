@@ -45,8 +45,10 @@ export default function DetailsMovie() {
   };
 
   useEffect(() => {
-    fetchApi();
-  }, []); // eslint-disable-line
+    if (id) {
+      fetchApi();
+    }
+  }, [id]); // eslint-disable-line
 
   return (
     <>
@@ -73,8 +75,17 @@ export default function DetailsMovie() {
                   alignItems: "center",
                 }}
               >
-                <Icon icon="simple-icons:imdb" color="#ffdb58" width="40" height="40" />{" "}
-                <span style={{ margin: "0 1rem" }}>{movie?.vote_average}</span>
+                <Icon
+                  icon="simple-icons:imdb"
+                  color="#ffdb58"
+                  width="40"
+                  height="40"
+                />{" "}
+                <span style={{ margin: "0 1rem" }}>
+                  {movie?.vote_average <= 0
+                    ? "not exists yet"
+                    : movie?.vote_average}
+                </span>
               </p>
               <p>
                 Runtime: <span>{convertTime(movie?.runtime)}</span>

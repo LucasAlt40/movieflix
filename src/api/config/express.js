@@ -17,6 +17,7 @@ module.exports = () => {
   require("../routes/moviesUpcomingRoute")(app);
   require("../routes/moviesTopRatedRoute")(app);
   require("../routes/movieDetailsRoute")(app);
+  require("../routes/movieSearchRoute")(app);
 
   return app;
 };
