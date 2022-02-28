@@ -31,8 +31,8 @@ module.exports = () => {
       })
       .catch((error) => {
         res.status(400).json(error.message);
+        console.log(error.message);
         console.log(error);
-        console.log("Request failed");
       });
   };
 
