@@ -15,7 +15,7 @@ import {
 } from "./style.module.scss";
 import { SearchRounded } from "@mui/icons-material";
 
-export default function SideMenuSearch() {
+export default function SideMenuSearch({typeMedia}) {
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => setOpen(true);
@@ -86,6 +86,7 @@ export default function SideMenuSearch() {
       <ModalSearch 
         open={open}
         setOpen={setOpen}
+        typeMedia={typeMedia}
       />
     </aside>
   );

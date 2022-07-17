@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import { useParams } from "react-router";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { axiosGet } from "../../utils";
 
 import FavoriteButton from "../FavoriteButton";
@@ -12,7 +12,10 @@ import { Skeleton } from "@mui/material";
 import { Icon } from "@iconify/react";
 
 export default function DetailsMovie() {
-  const { id } = useParams();
+  const { id, typeMedia } = useParams();
+
+
+  const navigation = useNavigate();
 
   const [movie, setMovie] = useState();
   const [loading, setLoading] = useState(true);
@@ -32,7 +35,7 @@ export default function DetailsMovie() {
     const options = {
       method: "GET",
       url: url,
-      params: { page: 1, movieId: id },
+      params: { page: 1, movieId: id, typeMedia: typeMedia },
     };
 
     await axiosGet(options)
@@ -50,6 +53,15 @@ export default function DetailsMovie() {
     }
   }, [id]); // eslint-disable-line
 
+  const renderDescSeasonTV = () => {
+    return(
+      <p>
+        Episodes: <span>{movie?.number_of_episodes}</span> <br/>
+        Seasons: <span>{movie?.number_of_seasons}</span>
+      </p>
+    );
+  }
+
   return (
     <>
       {!loading ? (
@@ -61,9 +73,9 @@ export default function DetailsMovie() {
           />
           <div className="details-content">
             <div className="extra-contents">
-              <Link to="/">
-                <ArrowBack /> Back to Home
-              </Link>
+              <button class="button-back-home" onClick={() => navigation(-1)}>
+                <ArrowBack /> Back 
+              </button>
               <img
                 src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
                 alt="poster-movie"
@@ -88,11 +100,11 @@ export default function DetailsMovie() {
                 </span>
               </p>
               <p>
-                Runtime: <span>{convertTime(movie?.runtime)}</span>
+                {typeMedia === "movies" ? (<>Runtime: <span>{convertTime(movie?.runtime)}</span></>) : (renderDescSeasonTV())}
               </p>
             </div>
             <div className="details-texts">
-              <h1 style={{ color: "#FFF" }}>{movie?.title}</h1>
+              <h1 style={{ color: "#FFF" }}>{movie?.title || movie?.name}</h1>
               <div className="genres">
                 {movie.genres.map((genre) => (
                   <div key={genre.id} className="genre">

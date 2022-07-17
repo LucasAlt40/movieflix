@@ -8,25 +8,25 @@ import { ArrowBack, ArrowForward } from "@mui/icons-material";
 import Poster from "../Poster";
 
 export default function Carousel(props) {
-  const { movieUrlApi, movieCategory } = props;
+  const { movieUrlApi, movieCategory, typeMedia } = props;
 
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
   const carousel = useRef(null);
 
   const fetchApi = async () => {
+    setLoading(true);
     const url = `http://localhost:8080/${movieUrlApi}`;
 
     const options = {
       method: "GET",
       url: url,
-      params: { page: 1 },
+      params: { page: 1, typeMedia: typeMedia },
     };
 
     await axiosGet(options)
       .then((response) => {
         setMovies(response.data.results);
-        console.log(response.status);
         setLoading(false);
       })
       .catch((err) => console.log(err.message));
@@ -34,7 +34,7 @@ export default function Carousel(props) {
 
   useEffect(() => {
     fetchApi();
-  }, []); // eslint-disable-line
+  }, [typeMedia]); // eslint-disable-line
 
   const handleLeftCLick = (e) => {
     e.preventDefault();
@@ -62,9 +62,9 @@ export default function Carousel(props) {
       </div>
       <div className="carousel" ref={carousel}>
         {!loading && !isEmpty(movies) ? (
-          movies.map((movie) => <Poster key={movie.id} movie={movie} />)
+          movies.map((movie) => <Poster typeMedia={typeMedia} key={movie.id} movie={movie} />)
         ) : (
-          <Skeleton variant="rect" width={210} height={118} />
+          <Skeleton variant="rect" width={"100%"} height={"60%"} />
         )}
       </div>
     </div>

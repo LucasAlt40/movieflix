@@ -7,8 +7,10 @@ module.exports = () => {
   controller.searchMovie = async (req, res) => {
     const query = req.query;
 
-    const url = `https://api.themoviedb.org/3/search/movie`;
+    const urlTv = `https://api.themoviedb.org/3/search/tv`;
+    const urlMovie = `https://api.themoviedb.org/3/search/movie`;
 
+    const url = (query.typeMedia === "tv") ? urlTv : urlMovie;
     const options = {
       method: "GET",
       url: url,

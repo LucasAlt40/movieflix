@@ -7,9 +7,14 @@ module.exports = () => {
   controller.listMoviesNowPlaying = async (req, res) => {
     const query = req.query;
 
+    const urlTv = `https://api.themoviedb.org/3/tv/airing_today`;
+    const urlMovie = `https://api.themoviedb.org/3/movie/now_playing`;
+
+    const url = (query.typeMedia === "tv") ? urlTv : urlMovie;
+
     const options = {
       method: "GET",
-      url: "https://api.themoviedb.org/3/movie/now_playing",
+      url: url,
       params: {
         language: "en-US",
         api_key: process.env.API_KEY,

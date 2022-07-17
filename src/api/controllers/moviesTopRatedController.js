@@ -7,9 +7,14 @@ module.exports = () => {
   controller.listMoviesTopRated = async (req, res) => {
     const query = req.query;
 
+    const urlTv = `https://api.themoviedb.org/3/tv/top_rated`;
+    const urlMovie = `https://api.themoviedb.org/3/movie/top_rated`;
+
+    const url = (query.typeMedia === "tv") ? urlTv : urlMovie;
+
     const options = {
       method: "GET",
-      url: "https://api.themoviedb.org/3/movie/top_rated",
+      url: url,
       params: {
         language: "en-US",
         api_key: process.env.API_KEY,

@@ -7,7 +7,7 @@ import "./styles.scss";
 import { Link } from "react-router-dom";
 
 export default function ModalSearch(props) {
-  const { open, setOpen } = props;
+  const { open, setOpen, typeMedia } = props;
 
   const [movies, setMovies] = useState([]);
   const [search, setSearch] = useState("");
@@ -20,7 +20,7 @@ export default function ModalSearch(props) {
     const options = {
       method: "GET",
       url: url,
-      params: { page: 1, query: search },
+      params: { page: 1, query: search, typeMedia: typeMedia },
     };
 
     await axiosGet(options)
@@ -33,8 +33,8 @@ export default function ModalSearch(props) {
   const renderTitleMovies = () =>
     movies.map((movie) => {
       return (
-        <Link onClick={handleClose} to={`/details/${movie.title}/${movie.id}`} className="movie-title" key={movie?.id}>
-          <h3>{movie?.title}</h3>
+        <Link onClick={handleClose} to={`/details/${movie.title}/${movie.id}/${typeMedia}`} className="movie-title" key={movie?.id}>
+          <h3>{typeMedia === "tv" ? movie?.name : movie?.title}</h3>
         </Link>
       );
     });
@@ -43,7 +43,7 @@ export default function ModalSearch(props) {
     if (search) {
       fetchApi();
     }
-  }, [search]); // eslint-disable-line
+  }, [search, typeMedia]); // eslint-disable-line
 
   return (
     <Modal

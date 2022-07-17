@@ -10,7 +10,8 @@ function App() {
     <Router>
       <Routes>
         <Route exact path="/" element={<Home />} />
-        <Route path="/details/:movieName/:id" element={<Details />} />
+        <Route path="/:typeMedia" element={<Home />} />
+        <Route path="/details/:movieName/:id/:typeMedia" element={<Details />} />
       </Routes>
     </Router>
   );

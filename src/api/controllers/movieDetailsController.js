@@ -7,8 +7,10 @@ module.exports = () => {
   controller.listDetailsMovie = async (req, res) => {
     const query = req.query;
 
-    const url = `https://api.themoviedb.org/3/movie/${query.movieId}`;
+    const urlTv = `https://api.themoviedb.org/3/tv/${query.movieId}`;
+    const urlMovie = `https://api.themoviedb.org/3/movie/${query.movieId}`;
 
+    const url = (query.typeMedia === "tv") ? urlTv : urlMovie;
     const options = {
       method: "GET",
       url: url,
@@ -24,6 +26,7 @@ module.exports = () => {
       .then((response) => {
         if (response.data) {
           res.status(200).json(response.data);
+          console.log(response.data);
         } else {
           res.status(204).json(response.data);
         }
