@@ -1,16 +1,19 @@
 .details-container {
-  width: 1360px;
-  height: 100%;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
 
   .bg-image {
-    margin-left: 250px;
-    width: 1420px;
+    width: 100%;
     height: 100%;
     position: absolute;
-    top: 0;
-    left: 0;
     opacity: 0.4;
     object-fit: cover;
+
+    @media only screen and (max-width: 1670px) {
+      height: 92%;
+    }
   }
 
   .details-content {
@@ -18,7 +21,6 @@
     width: 1000px;
     height: 750px;
     background: #222831;
-    margin: auto;
     border-radius: 12px;
     display: flex;
     justify-content: center;
@@ -139,5 +141,9 @@
         }
       }
     }
+  }
+
+  @media only screen and (max-width: 1670px) {
+    height: 92vh;
   }
 }

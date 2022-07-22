@@ -21,6 +21,16 @@
           border: 2px solid #fff;
         }
       }
+      @media only screen and (max-width: 650px) {
+        display: none;
+      }
+    }
+
+    @media only screen and (max-width: 650px) {
+      justify-content: center;
+      h1 {
+        font-size: 23px;
+      }
     }
   }
 
@@ -36,4 +46,6 @@
       display: none;
     }
   }
+
+  
 }

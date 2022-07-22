@@ -10,8 +10,8 @@ function App() {
     <Router>
       <Routes>
         <Route exact path="/" element={<Home />} />
-        <Route path="/:typeMedia" element={<Home />} />
-        <Route path="/details/:movieName/:id/:typeMedia" element={<Details />} />
+        <Route exact path="/:typeMedia" element={<Home />} />
+        <Route exact path="/details/:movieName/:id/:typeMedia" element={<Details />} />
       </Routes>
     </Router>
   );

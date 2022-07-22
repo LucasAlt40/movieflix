@@ -26,7 +26,6 @@ module.exports = () => {
       .then((response) => {
         if (response.data) {
           res.status(200).json(response.data);
-          console.log(response.data);
         } else {
           res.status(204).json(response.data);
         }

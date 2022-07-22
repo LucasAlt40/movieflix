@@ -33,7 +33,7 @@ export default function ModalSearch(props) {
   const renderTitleMovies = () =>
     movies.map((movie) => {
       return (
-        <Link onClick={handleClose} to={`/details/${movie.title}/${movie.id}/${typeMedia}`} className="movie-title" key={movie?.id}>
+        <Link onClick={handleClose} to={`/details/${movie?.title || movie?.name}/${movie.id}/${typeMedia}`} className="movie-title" key={movie?.id}>
           <h3>{typeMedia === "tv" ? movie?.name : movie?.title}</h3>
         </Link>
       );

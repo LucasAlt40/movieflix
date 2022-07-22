@@ -2,6 +2,8 @@
   width: 250px;
   height: 100vh;
 
+  background: #222831;
+
   display: flex;
   flex-direction: column;
 
@@ -68,5 +70,9 @@
         }
       }
     }
+  }
+
+  @media only screen and (max-width: 1670px) {
+    display: none;
   }
 }

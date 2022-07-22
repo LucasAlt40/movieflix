@@ -96,7 +96,7 @@ export default function DetailsMovie() {
                 <span style={{ margin: "0 1rem" }}>
                   {movie?.vote_average <= 0
                     ? "not exists yet"
-                    : movie?.vote_average}
+                    : movie?.vote_average.toFixed(1)}
                 </span>
               </p>
               <p>

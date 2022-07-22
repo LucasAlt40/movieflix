@@ -3,15 +3,19 @@ import React from "react";
 import SideMenu from "../components/SideMenu";
 import SideMenuSearch from "../components/SideMenuSearch";
 import DetailsMovie from "../components/DetailsMovie";
+import ResponsiveHeader from "../components/ResponsiveHeader";
+import { useParams } from "react-router-dom";
 
 export default function Details() {
+  const { typeMedia } = useParams();
   return (
-    <main style={{ display: "flex", justifyContent: "space-between", height: "100vh" }}>
-      <SideMenu />
-      <div style={{ margin: "4rem 280px" }}>
-        <DetailsMovie />
-      </div>
-      <SideMenuSearch />
-    </main>
+    <>
+      <ResponsiveHeader />
+      <main>
+        <SideMenu />
+          <DetailsMovie />
+        <SideMenuSearch typeMedia={typeMedia} />
+      </main>
+    </>
   );
 }
