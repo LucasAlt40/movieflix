@@ -29,7 +29,7 @@ module.exports = () => {
         } else {
           res.status(204).json(response.data);
         }
-        console.log("Request successful");
+        
       })
       .catch((error) => {
         res.status(400).json(error.message);

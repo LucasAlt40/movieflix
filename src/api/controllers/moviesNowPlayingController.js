@@ -31,7 +31,7 @@ module.exports = () => {
         } else {
           res.status(204).json(response.data);
         }
-        console.log("Request successful");
+        
       })
       .catch((error) => {
         res.json(error);
