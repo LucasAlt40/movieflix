@@ -37,10 +37,10 @@ export default function CatalogComponent({typeMedia = "movies"}) {
       </div>
       </div>
       <div className="carousels-container">
-        <Carousel movieUrlApi="movies-popular" typeMedia={typeMedia} movieCategory={typeMedia === "movies" ? "Popular Movies" : "Popular Tv Shows"} />
-        <Carousel movieUrlApi="movies-now-playing" typeMedia={typeMedia} movieCategory={typeMedia === "movies" ? "Movies now playing" : "Tv Shows airing today"} />
-        {typeMedia === "movies" ? (<Carousel movieUrlApi="movies-upcoming" typeMedia={typeMedia} movieCategory="Movies upcoming" />) : null}
-        <Carousel movieUrlApi="movies-top-rated" typeMedia={typeMedia} movieCategory={typeMedia === "movies" ? "Top rated Movies" : "Top rated Tv Shows"} />
+        <Carousel movieUrlApi="popular" typeMedia={typeMedia} movieCategory={typeMedia === "movies" ? "Popular Movies" : "Popular Tv Shows"} />
+        <Carousel movieUrlApi="now-playing" typeMedia={typeMedia} movieCategory={typeMedia === "movies" ? "Movies now playing" : "Tv Shows airing today"} />
+        {typeMedia === "movies" ? (<Carousel movieUrlApi="upcoming" typeMedia={typeMedia} movieCategory="Movies upcoming" />) : null}
+        <Carousel movieUrlApi="top-rated" typeMedia={typeMedia} movieCategory={typeMedia === "movies" ? "Top rated Movies" : "Top rated Tv Shows"} />
       </div>
       <ModalSearch 
         open={open}

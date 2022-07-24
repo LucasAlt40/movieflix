@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { axiosGet } from "../../utils";
 import { isEmpty } from "lodash";
 
 import { Box, Modal, TextField } from "@mui/material";
 import "./styles.scss";
 import { Link } from "react-router-dom";
+import getSearch from "../../api/getSearch";
 
 export default function ModalSearch(props) {
   const { open, setOpen, typeMedia } = props;
@@ -15,25 +15,21 @@ export default function ModalSearch(props) {
   const handleClose = () => setOpen(false);
 
   const fetchApi = async () => {
-    const url = `http://localhost:8080/movie-search`;
-
-    const options = {
-      method: "GET",
-      url: url,
-      params: { page: 1, query: search, typeMedia: typeMedia },
-    };
-
-    await axiosGet(options)
-      .then((response) => {
-        setMovies(response.data.results);
-      })
-      .catch((err) => console.log(err));
+    const response = await getSearch(typeMedia, search);
+    setMovies(response.results);
   };
 
   const renderTitleMovies = () =>
     movies.map((movie) => {
       return (
-        <Link onClick={handleClose} to={`/details/${movie?.title || movie?.name}/${movie.id}/${typeMedia}`} className="movie-title" key={movie?.id}>
+        <Link
+          onClick={handleClose}
+          to={`/details/${movie?.title || movie?.name}/${
+            movie.id
+          }/${typeMedia}`}
+          className="movie-title"
+          key={movie?.id}
+        >
           <h3>{typeMedia === "tv" ? movie?.name : movie?.title}</h3>
         </Link>
       );

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 
 import { useParams } from "react-router";
 import { useNavigate } from "react-router-dom";
-import { axiosGet } from "../../utils";
 
 import FavoriteButton from "../FavoriteButton";
 
@@ -10,10 +9,10 @@ import "./styles.scss";
 import { ArrowBack } from "@mui/icons-material";
 import { Skeleton } from "@mui/material";
 import { Icon } from "@iconify/react";
+import getDetails from "../../api/getDetails";
 
 export default function DetailsMovie() {
   const { id, typeMedia } = useParams();
-
 
   const navigation = useNavigate();
 
@@ -30,21 +29,9 @@ export default function DetailsMovie() {
   };
 
   const fetchApi = async () => {
-    const url = `http://localhost:8080/movie-details`;
-
-    const options = {
-      method: "GET",
-      url: url,
-      params: { page: 1, movieId: id, typeMedia: typeMedia },
-    };
-
-    await axiosGet(options)
-      .then((response) => {
-        console.log(response.data);
-        setMovie(response.data);
-        setLoading(false);
-      })
-      .catch((err) => console.log(err.message));
+    const response = await getDetails(typeMedia, id);
+    setMovie(response);
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -54,13 +41,13 @@ export default function DetailsMovie() {
   }, [id]); // eslint-disable-line
 
   const renderDescSeasonTV = () => {
-    return(
+    return (
       <p>
-        Episodes: <span>{movie?.number_of_episodes}</span> <br/>
+        Episodes: <span>{movie?.number_of_episodes}</span> <br />
         Seasons: <span>{movie?.number_of_seasons}</span>
       </p>
     );
-  }
+  };
 
   return (
     <>
@@ -68,13 +55,13 @@ export default function DetailsMovie() {
         <div className="details-container">
           <img
             className="bg-image"
-            src={`https://image.tmdb.org/t/p/w1280/${movie.backdrop_path}`}
+            src={`https://image.tmdb.org/t/p/w1280/${movie?.backdrop_path}`}
             alt="poster"
           />
           <div className="details-content">
             <div className="extra-contents">
               <button class="button-back-home" onClick={() => navigation(-1)}>
-                <ArrowBack /> Back 
+                <ArrowBack /> Back
               </button>
               <img
                 src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
@@ -100,7 +87,13 @@ export default function DetailsMovie() {
                 </span>
               </p>
               <p>
-                {typeMedia === "movies" ? (<>Runtime: <span>{convertTime(movie?.runtime)}</span></>) : (renderDescSeasonTV())}
+                {typeMedia === "movies" ? (
+                  <>
+                    Runtime: <span>{convertTime(movie?.runtime)}</span>
+                  </>
+                ) : (
+                  renderDescSeasonTV()
+                )}
               </p>
             </div>
             <div className="details-texts">

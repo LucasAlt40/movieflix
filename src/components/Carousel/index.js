@@ -1,11 +1,15 @@
 import React, { useState, useEffect, useRef } from "react";
-import { axiosGet } from "../../utils";
 import { isEmpty } from "lodash";
 
 import "./style.scss";
 import { Skeleton } from "@mui/material";
 import { ArrowBack, ArrowForward } from "@mui/icons-material";
 import Poster from "../Poster";
+
+import getNowPlaying from "../../api/getNowPlaying";
+import getUpcoming from "../../api/getUpcoming";
+import getTopRated from "../../api/getTopRated";
+import getPopular from "../../api/getPopular";
 
 export default function Carousel(props) {
   const { movieUrlApi, movieCategory, typeMedia } = props;
@@ -14,22 +18,27 @@ export default function Carousel(props) {
   const [loading, setLoading] = useState(true);
   const carousel = useRef(null);
 
+  const checkUrl = async () => {
+    switch (movieUrlApi) {
+      case "now-playing": 
+        return await getNowPlaying(typeMedia);
+      case "upcoming":
+        return await getUpcoming();
+      case "top-rated":
+        return await getTopRated(typeMedia);
+      case "popular":
+        return await getPopular(typeMedia);
+      default: 
+        break;
+    }
+  };
+
   const fetchApi = async () => {
     setLoading(true);
-    const url = `http://localhost:8080/${movieUrlApi}`;
+    const response = await checkUrl();
 
-    const options = {
-      method: "GET",
-      url: url,
-      params: { page: 1, typeMedia: typeMedia },
-    };
-
-    await axiosGet(options)
-      .then((response) => {
-        setMovies(response.data.results);
-        setLoading(false);
-      })
-      .catch((err) => console.log(err.message));
+    setMovies(response?.results);
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -62,7 +71,9 @@ export default function Carousel(props) {
       </div>
       <div className="carousel" ref={carousel}>
         {!loading && !isEmpty(movies) ? (
-          movies.map((movie) => <Poster typeMedia={typeMedia} key={movie.id} movie={movie} />)
+          movies.map((movie) => (
+            <Poster typeMedia={typeMedia} key={movie.id} movie={movie} />
+          ))
         ) : (
           <Skeleton variant="rect" width={"100%"} height={"60%"} />
         )}
