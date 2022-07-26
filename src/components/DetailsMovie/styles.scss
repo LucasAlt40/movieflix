@@ -19,8 +19,12 @@
       height: 208vh;
     }
 
-    @media only screen and (max-width: 650px) {
-      height: 224vh;
+    @media only screen and (max-height: 900px) and (max-width: 420px) {
+      height: 173vh;
+    }
+
+    @media only screen and (max-width: 375px){
+      height: 210vh;
     }
   }
 

@@ -20,7 +20,7 @@ export default function Carousel(props) {
 
   const checkUrl = async () => {
     switch (movieUrlApi) {
-      case "now-playing": 
+      case "now-playing":
         return await getNowPlaying(typeMedia);
       case "upcoming":
         return await getUpcoming();
@@ -28,7 +28,7 @@ export default function Carousel(props) {
         return await getTopRated(typeMedia);
       case "popular":
         return await getPopular(typeMedia);
-      default: 
+      default:
         break;
     }
   };
@@ -47,12 +47,12 @@ export default function Carousel(props) {
 
   const handleLeftCLick = (e) => {
     e.preventDefault();
-    carousel.current.scrollLeft -= 1000;
+    carousel.current.scrollLeft -= 800;
   };
 
   const handleRightCLick = (e) => {
     e.preventDefault();
-    carousel.current.scrollLeft += 1000;
+    carousel.current.scrollLeft += 800;
   };
 
   return (
@@ -69,14 +69,23 @@ export default function Carousel(props) {
           </button>
         </div>
       </div>
-      <div className="carousel" ref={carousel}>
-        {!loading && !isEmpty(movies) ? (
-          movies.map((movie) => (
-            <Poster typeMedia={typeMedia} key={movie.id} movie={movie} />
-          ))
-        ) : (
-          <Skeleton variant="rect" width={"100%"} height={"60%"} />
-        )}
+
+      <div className="carousel-container">
+        <button onClick={handleLeftCLick}>
+          <ArrowBack />{" "}
+        </button>
+        <div className="carousel" ref={carousel}>
+          {!loading && !isEmpty(movies) ? (
+            movies.map((movie) => (
+              <Poster typeMedia={typeMedia} key={movie.id} movie={movie} />
+            ))
+          ) : (
+            <Skeleton variant="rect" width={"100%"} height={"60%"} />
+          )}
+        </div>
+        <button onClick={handleRightCLick}>
+          <ArrowForward />
+        </button>
       </div>
     </div>
   );
