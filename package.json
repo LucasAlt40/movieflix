@@ -1,6 +1,7 @@
 {
   "name": "movieflix",
   "version": "0.2.0",
+  "homepage": "https://lucasalt40.github.io/movieflix-react/",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.7.1",
