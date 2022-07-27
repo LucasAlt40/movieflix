@@ -7,7 +7,7 @@ import Home from "./pages/Home";
 
 function App() {
   return (
-    <Router basename={process.env.PUBLIC_URL}>
+    <Router>
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route exact path="/:typeMedia" element={<Home />} />

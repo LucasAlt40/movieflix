@@ -172,11 +172,11 @@
       }
     }
 
-    @media only screen and (max-height: 720px) {
+    @media only screen and (max-height: 830px) {
       margin-top: 10rem;
     }
 
-    @media only screen and (max-width: 1050px) {
+    @media only screen and (max-width: 1050px), (max-height: 650px) {
       width: 60%;
       height: 100%;
       flex-direction: column;
