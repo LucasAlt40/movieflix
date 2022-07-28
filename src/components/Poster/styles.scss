@@ -3,53 +3,34 @@
   width: 280px;
   flex: none;
 
-  .poster {
-    text-decoration: none;
+  cursor: pointer;
 
-    transition: all 0.3s ease-in-out;
+  img {
+    width: 100%;
+    object-fit: cover;
+    border-radius: 12px;
 
-    img {
-      width: 100%;
-      object-fit: cover;
-      border-radius: 12px;
-
-      @media only screen and (max-height: 760px) {
-        width: 80%;
-        height: 80%;
-      }
-
-      @media only screen and (max-width: 400px) {
-        width: 200px;
-      }
+    @media only screen and (max-height: 760px) {
+      width: 80%;
+      height: 80%;
     }
 
-    .info {
-      width: 100%;
-      display: none;
-      text-align: center;
-      border-radius: 0px 0px 8px 8px;
-      color: #e5e5e5;
-      background: #393e46;
-
-      @media only screen and (max-height: 760px) {
-        width: 80%;
-      }
+    @media only screen and (max-width: 500px) {
+      width: 200px;
     }
 
-    &:hover {
-      img {
-        border-radius: 12px 12px 0 0;
-      }
-      .info {
-        display: block;
-      }
+    @media only screen and (max-width: 470px) {
+      width: 150px;
     }
-
-    cursor: pointer;
   }
 
-  @media only screen and (max-width: 400px) {
+  @media only screen and (max-width: 650px) {
     margin: 1em;
     width: 200px;
+  }
+
+  @media only screen and (max-width: 425px) {
+    margin: 1em;
+    width: auto;
   }
 }
