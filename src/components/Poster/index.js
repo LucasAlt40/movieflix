@@ -8,10 +8,12 @@ export default function Poster({ nameMedia, id, poster_path, typeMedia }) {
     .normalize("NFD")
     .replace(/([\u0300-\u036f]|[^0-9a-zA-Z])/g, "");
 
+  const posterImg = "https://image.tmdb.org/t/p/w500" + poster_path;
+
   return (
     <Link to={`/details/${nameMedia}/${id}/${typeMedia}`} className="item">
       <img
-        src={"https://image.tmdb.org/t/p/w500" + poster_path}
+        src={posterImg}
         alt="movie poster"
       />
     </Link>

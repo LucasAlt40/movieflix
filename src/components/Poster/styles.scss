@@ -5,6 +5,8 @@
 
   cursor: pointer;
 
+  transition: all .2s ease-in-out;
+
   img {
     width: 100%;
     object-fit: cover;
@@ -21,6 +23,14 @@
 
     @media only screen and (max-width: 470px) {
       width: 150px;
+    }
+  }
+
+  &:hover {
+    
+    margin: 0 3rem;
+    img {
+      transform: scale(1.2);
     }
   }
 

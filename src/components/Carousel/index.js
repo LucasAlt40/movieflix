@@ -1,7 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { isEmpty } from "lodash";
 
-import "./style.scss";
 import { Skeleton } from "@mui/material";
 import { ArrowBack, ArrowForward } from "@mui/icons-material";
 import Poster from "../Poster";
@@ -10,6 +8,8 @@ import getNowPlaying from "../../api/getNowPlaying";
 import getUpcoming from "../../api/getUpcoming";
 import getTopRated from "../../api/getTopRated";
 import getPopular from "../../api/getPopular";
+
+import "./style.scss";
 
 export default function Carousel(props) {
   const { movieUrlApi, movieCategory, typeMedia } = props;
@@ -75,18 +75,18 @@ export default function Carousel(props) {
           <ArrowBack />{" "}
         </button>
         <div className="carousel" ref={carousel}>
-          {!loading && !isEmpty(movies) ? (
-            movies.map((movie) => (
+          {movies.map((movie) =>
+            loading === false ? (
               <Poster
                 nameMedia={movie?.title || movie?.name}
                 typeMedia={typeMedia}
-                id={movie.id}
-                key={movie.id}
-                poster_path={movie.poster_path}
+                id={movie?.id}
+                key={movie?.id}
+                poster_path={movie?.poster_path}
               />
-            ))
-          ) : (
-            <Skeleton variant="rect" width={"100%"} height={"60%"} />
+            ) : (
+              <Skeleton variant="rect" width={"100%"} height={"60%"} />
+            )
           )}
         </div>
         <button onClick={handleRightCLick}>
