@@ -77,7 +77,13 @@ export default function Carousel(props) {
         <div className="carousel" ref={carousel}>
           {!loading && !isEmpty(movies) ? (
             movies.map((movie) => (
-              <Poster typeMedia={typeMedia} key={movie.id} movie={movie} />
+              <Poster
+                nameMedia={movie?.title || movie?.name}
+                typeMedia={typeMedia}
+                id={movie.id}
+                key={movie.id}
+                poster_path={movie.poster_path}
+              />
             ))
           ) : (
             <Skeleton variant="rect" width={"100%"} height={"60%"} />
