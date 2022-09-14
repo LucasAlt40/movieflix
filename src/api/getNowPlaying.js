@@ -16,7 +16,6 @@ const getNowPlaying = async (typeMedia) => {
     headers: {},
   };
 
-  
 
   return await axios
     .request(options)
