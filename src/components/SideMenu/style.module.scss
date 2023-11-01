@@ -1,0 +1,78 @@
+.sideMenu {
+  width: 250px;
+  height: 100vh;
+
+  background: #222831;
+
+  display: flex;
+  flex-direction: column;
+
+  border-right: 1px solid #393e46;
+  color: #fff;
+
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  overflow-x: hidden;
+
+  .logo {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem auto;
+
+    .flixTitle {
+      color: #00adb5;
+    }
+  }
+
+  .menu,
+  footer {
+    margin: 4rem 1rem;
+
+    display: flex;
+    flex-direction: column;
+
+    color: #929191;
+
+    ul {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .active {
+      border-right: 4px solid #00adb5;
+      a {
+        color: #fff;
+      }
+    }
+
+    li {
+      list-style: none;
+      margin: 1.5rem 0;
+      a {
+        text-decoration: none;
+        color: #929191;
+
+        display: flex;
+        align-items: center;
+
+        :first-child {
+          margin-right: 1rem;
+        }
+
+        &:hover {
+          text-decoration: underline;
+          color: #00adb5;
+          border-right: 4px solid #00adb5;
+        }
+      }
+    }
+  }
+
+  @media only screen and (max-width: 1670px) {
+    display: none;
+  }
+}

@@ -1,0 +1,46 @@
+.item {
+  margin: 10px;
+  width: 280px;
+  flex: none;
+
+  cursor: pointer;
+
+  transition: all 0.4s ease-in-out;
+
+  img {
+    width: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+
+    @media only screen and (max-height: 760px) {
+      width: 80%;
+      height: 80%;
+    }
+
+    @media only screen and (max-width: 500px) {
+      width: 200px;
+    }
+
+    @media only screen and (max-width: 470px) {
+      width: 150px;
+    }
+  }
+
+  &:hover {
+    
+    margin: 0 3rem;
+    img {
+      transform: scale(1.2);
+    }
+  }
+
+  @media only screen and (max-width: 650px) {
+    margin: 1em;
+    width: 200px;
+  }
+
+  @media only screen and (max-width: 425px) {
+    margin: 1em;
+    width: auto;
+  }
+}
