@@ -86,7 +86,7 @@ export default function Carousel(props) {
                 poster_path={movie?.poster_path}
               />
             ) : (
-              <Skeleton key={1} variant="rect" width={"100%"} height={"60%"} />
+              <Skeleton key={(movie?.id + 1)} variant="rect" width={"100%"} height={"60%"} />
             )
           )}
         </div>

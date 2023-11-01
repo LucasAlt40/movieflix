@@ -1,5 +1,19 @@
 const enviroment = {
-  ApiKey: `Your API Key`,
+  ApiToken: `Your Token`,
 };
 
-export default enviroment;
+const mountOptions = (url, method, params) => {
+  const options = {
+    method: method,
+    url: url,
+    params: { language: "en-US", page: "1", ...params },
+    headers: {
+      accept: "application/json",
+      Authorization: `Bearer ${enviroment.ApiToken}`,
+    },
+  };
+
+  return options;
+};
+
+export default mountOptions;

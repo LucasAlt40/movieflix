@@ -1,16 +1,11 @@
 import axios from "axios";
-import enviroment from "./enviroment.dev";
+import mountOptions from "./enviroment.dev";
 
 const getUpcoming = async () => {
-  const options = {
-    method: "GET",
-    url: `https://api.themoviedb.org/3/movie/upcoming`,
-    params: { language: "en-US", page: "1" },
-    headers: {
-      accept: "application/json",
-      Authorization: `Bearer ${enviroment.ApiKey}`,
-    },
-  };
+  const options = mountOptions(
+    "https://api.themoviedb.org/3/movie/upcoming",
+    "GET"
+  );
 
   return await axios
     .request(options)
