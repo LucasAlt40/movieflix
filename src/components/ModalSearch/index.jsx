@@ -25,9 +25,7 @@ export default function ModalSearch(props) {
       return (
         <Link
           onClick={handleClose}
-          to={`/details/${movie?.title || movie?.name}/${
-            movie.id
-          }/${typeMedia}`}
+          to={`details/${typeMedia}/${movie?.id}/`}
           className="movie-title"
           key={movie?.id}
         >

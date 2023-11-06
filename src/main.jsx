@@ -1,23 +1,23 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.scss'
-import { RouterProvider, createBrowserRouter } from 'react-router-dom'
+import { RouterProvider, createBrowserRouter, redirect} from 'react-router-dom'
 import HomePage from './pages/HomePage'
 import DetailPage from './pages/DetailPage'
 
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/movieflix",
     element: <HomePage />,
   },
   {
-    path: '/:typeMedia',
-    element: <HomePage />,
-  },
-  {
-    path: '/details/:nameMedia/:id/:typeMedia',
+    path: '/movieflix/details/:typeMedia/:id/',
     element: <DetailPage />,
+  },
+  {
+    path: '/',
+    element: redirect('/movieflix'),
   }
 ])
 
