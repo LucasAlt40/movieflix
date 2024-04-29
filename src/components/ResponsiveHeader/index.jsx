@@ -40,7 +40,7 @@ export default function ResponsiveHeader() {
           aria-controls={open ? "basic-menu" : undefined}
           aria-haspopup="true"
           aria-expanded={open ? "true" : undefined}
-          oonClick={handleClick}
+          onClick={handleClick}
         >
           <MenuSharp />
         </Button>
