@@ -40,7 +40,7 @@ export default function ResponsiveHeader() {
           aria-controls={open ? "basic-menu" : undefined}
           aria-haspopup="true"
           aria-expanded={open ? "true" : undefined}
-          onClick={handleClick}
+          oonClick={handleClick}
         >
           <MenuSharp />
         </Button>
@@ -61,7 +61,7 @@ export default function ResponsiveHeader() {
               <HomeIcon /> Home
             </Link>
           </MenuItem>
-          <MenuItem nClick={handleClose}>
+          <MenuItem onClick={handleClose}>
             <Link
               style={styleMenuItems}
               to="/"
@@ -69,7 +69,7 @@ export default function ResponsiveHeader() {
               <Person /> About
             </Link>
           </MenuItem>
-          <MenuItem nClick={handleClose}>
+          <MenuItem onClick={handleClose}>
             <Link
               style={styleMenuItems}
               to="/"
@@ -77,7 +77,7 @@ export default function ResponsiveHeader() {
               <Dashboard /> Complete catalog
             </Link>
           </MenuItem>
-          <MenuItem nClick={handleClose}>
+          <MenuItem onClick={handleClose}>
             <Link
               style={styleMenuItems}
               to="/"
@@ -85,7 +85,7 @@ export default function ResponsiveHeader() {
               <Settings /> Settings
             </Link>
           </MenuItem>
-          <MenuItem nClick={handleClose}>
+          <MenuItem onClick={handleClose}>
             <Link
               style={styleMenuItems}
               to="/"
